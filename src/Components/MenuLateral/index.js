@@ -4,6 +4,16 @@ import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 import Global_Vars from "../../Scripts/GLobal/Global_Var";
 import { useNavigation } from "@react-navigation/native";
 
+import Aulas from "../../../assets/Components/MenuLateral/Aulas.svg";
+import Avisos from "../../../assets/Components/MenuLateral/Avisos.svg";
+import Config from "../../../assets/Components/MenuLateral/Config.svg";
+import Dark_Mode from "../../../assets/Components/MenuLateral/Dark_Mode.svg";
+import Home from "../../../assets/Components/MenuLateral/Home.svg";
+import Perfil from "../../../assets/Components/MenuLateral/Perfil.svg";
+import Planos from "../../../assets/Components/MenuLateral/Planos.svg";
+import Produtos from "../../../assets/Components/MenuLateral/Produtos.svg";
+import Treinos from "../../../assets/Components/MenuLateral/Treinos.svg";
+
 export default function Menulateral_c({ page }) {
     const navigation = useNavigation();
     return (
@@ -20,11 +30,7 @@ export default function Menulateral_c({ page }) {
                             page === "dashboard" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image
-                            source={require("../../../assets/Components/MenuLateral/home_sb.png")}
-                            resizeMode="contain"
-                            style={styles.mlItemImage}
-                        />
+                        <Image />
                         <Text style={styles.mlItemText}>Dashboard</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -37,11 +43,7 @@ export default function Menulateral_c({ page }) {
                             page === "treinos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image
-                            source={require("../../../assets/Components/MenuLateral/treinos_sb.png")}
-                            resizeMode="contain"
-                            style={styles.mlItemImage}
-                        />
+                        <Image />
                         <Text style={styles.mlItemText}>Meus Treinos</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -54,11 +56,7 @@ export default function Menulateral_c({ page }) {
                             page === "planos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image
-                            source={require("../../../assets/Components/MenuLateral/planos_sb.png")}
-                            resizeMode="contain"
-                            style={styles.mlItemImage}
-                        />
+                        <Image />
                         <Text style={styles.mlItemText}>Planos</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -75,11 +73,7 @@ export default function Menulateral_c({ page }) {
                             page === "produtos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image
-                            source={require("../../../assets/Components/MenuLateral/produtos_sb.png")}
-                            resizeMode="contain"
-                            style={styles.mlItemImage}
-                        />
+                        <Image />
                         <Text style={styles.mlItemText}>Produtos</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -92,11 +86,7 @@ export default function Menulateral_c({ page }) {
                             page === "aulas" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image
-                            source={require("../../../assets/Components/MenuLateral/horarios_sb.png")}
-                            resizeMode="contain"
-                            style={styles.mlItemImage}
-                        />
+                        <Image />
                         <Text style={styles.mlItemText}>Horarios de aulas</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -109,11 +99,7 @@ export default function Menulateral_c({ page }) {
                             page === "avisos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image
-                            source={require("../../../assets/Components/MenuLateral/avisos_sb.png")}
-                            resizeMode="contain"
-                            style={styles.mlItemImage}
-                        />
+                        <Image />
                         <Text style={styles.mlItemText}>Avisos</Text>
                     </TouchableOpacity>
                 </View>
@@ -125,11 +111,7 @@ export default function Menulateral_c({ page }) {
                         navigation.navigate("Perfil_p");
                     }}
                 >
-                    <Image
-                        source={require("../../../assets/Components/MenuLateral/perfil_sb.png")}
-                        resizeMode="contain"
-                        style={styles.mlBDPImage}
-                    />
+                    <Image />
                 </TouchableOpacity>
                 <Text style={styles.mlBDPText}>
                     {Global_Vars.NOME.length > 14
@@ -138,11 +120,7 @@ export default function Menulateral_c({ page }) {
                 </Text>
                 {/* Elemento de desenvolvimento */}
                 <TouchableOpacity style={styles.mlBDPImageContainer}>
-                    <Image
-                        source={require("../../../assets/Components/MenuLateral/dark_mode_sb.png")}
-                        resizeMode="contain"
-                        style={[styles.mlBDPImage]}
-                    />
+                    <Image />
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.mlBDPImageContainer}
@@ -150,11 +128,7 @@ export default function Menulateral_c({ page }) {
                         navigation.navigate("Config_p");
                     }}
                 >
-                    <Image
-                        source={require("../../../assets/Components/MenuLateral/configuracoes_sb.png")}
-                        resizeMode="contain"
-                        style={styles.mlBDPImage}
-                    />
+                    <Image />
                 </TouchableOpacity>
             </View>
         </View>

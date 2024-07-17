@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
         paddingTop: "10%",
         paddingBottom: "20%",
         justifyContent: "space-between",
+        zIndex: 10000,
     },
     mlItem: {
         width: "90%",
