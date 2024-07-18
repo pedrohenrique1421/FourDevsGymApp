@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
         padding: "3%",
         zIndex: 100,
     },
+    backgroundBtn: {
+        width: width,
+        height: "100%",
+        position: "absolute",
+    },
 });
 
 export default styles;
