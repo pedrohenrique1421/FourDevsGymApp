@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     },
     lgContainerText: {
         fontSize: 30,
+        top:10,
     },
     // Inputs Container
     ipContainer: {
@@ -61,15 +62,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         gap: 12,
-        borderRadius: 10,
+        borderRadius: 7,
     },
     btImage: {
         width: 25,
         height: 25,
+        marginRight:20,
     },
     btText: {
         color: Global_Colors.BW_PRIMARY_COLOR,
         fontSize: 15,
+        paddingLeft:20,
     },
 });
 
