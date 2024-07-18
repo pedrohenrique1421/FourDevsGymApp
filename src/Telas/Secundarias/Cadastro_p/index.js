@@ -1,59 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { View, TextInput, StyleSheet, BackHandler, TouchableWithoutFeedback, Keyboard, Text } from "react-native";
+import { Text, SafeAreaView, View, StatusBar, Dimensions } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import styles from "./style";
+import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
-export default Cadastro_p = () => {
-    const [isFocused, setIsFocused] = useState(false);
+import NavBar_c from "../../../Components/NavBar";
 
-    useEffect(() => {
-        const backAction = () => {
-            if (isFocused) {
-                Keyboard.dismiss();
-                setIsFocused(false);
-                return true;
-            }
-            return false;
-        };
-
-        const backHandler = BackHandler.addEventListener("hardwareBackPress", backAction);
-
-        return () => backHandler.remove();
-    }, [isFocused]);
-
-    const handleFocus = () => setIsFocused(true);
-    const handleBlur = () => setIsFocused(false);
-
-    const dismissKeyboard = () => {
-        Keyboard.dismiss();
-        setIsFocused(false);
-    };
-
+export default function Cadastro_p() {
+    const navigation = useNavigation();
     return (
-        <TouchableWithoutFeedback onPress={dismissKeyboard}>
-            <View style={styles.container}>
-                <TextInput style={styles.input} onFocus={handleFocus} onBlur={handleBlur} />
-                <Text style={[styles.text, { opacity: isFocused ? 0 : 1 }]}>
-                    Este texto desaparece quando o TextInput está focado.
-                </Text>
+        <SafeAreaView style={styles.container}>
+            <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
+            {/* NavBar */}
+            <NavBar_c />
+            <View style={styles.cpContainer}>
+                <Text style={styles.cpTitle}>Pagina de Cadastro</Text>
+                <Text style={styles.cpSubTitle}>Pagina para fazer um cadastro no app</Text>
             </View>
-        </TouchableWithoutFeedback>
+        </SafeAreaView>
     );
-};
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    input: {
-        width: 200,
-        height: 40,
-        borderColor: "gray",
-        borderWidth: 1,
-        padding: 10,
-    },
-    text: {
-        marginTop: 20,
-        fontSize: 18,
-    },
-});
+}
