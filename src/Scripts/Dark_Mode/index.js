@@ -1,17 +1,16 @@
+import Global_Colors from "../GLobal/Global_Colors";
 import Global_Vars from "../GLobal/Global_Var";
 
 export default function Dark_Mode_Set() {
     if (Global_Vars.MODE == 1) {
-        Global_Vars.PRIMARY_COLOR = "#FF6B14";
-        Global_Vars.SECONDARY_COLOR = "#C54900";
-        Global_Vars.BW_PRIMARY_COLOR = "#efefef";
-        Global_Vars.BW_SECONDARY_COLOR = "#f1f1f1";
-        Global_Vars.BW_TERTIARY_COLOR = "#DD5E13";
+        // LIGHT
+        Global_Colors.BW_PRIMARY_COLOR = "#f1f1f1";
+        Global_Colors.BW_SECONDARY_COLOR = "#242424";
+        Global_Vars.MODE = 0;
     } else {
-        Global_Vars.PRIMARY_COLOR = "#FF6B14";
-        Global_Vars.SECONDARY_COLOR = "#C54900";
-        Global_Vars.BW_PRIMARY_COLOR = "#101010";
-        Global_Vars.BW_SECONDARY_COLOR = "#0e0e0e";
-        Global_Vars.BW_TERTIARY_COLOR = "#DD5E13";
+        // DARK
+        Global_Colors.BW_PRIMARY_COLOR = "#242424";
+        Global_Colors.BW_SECONDARY_COLOR = "#f1f1f1";
+        Global_Vars.MODE = 1;
     }
 }

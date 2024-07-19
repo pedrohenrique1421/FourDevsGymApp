@@ -1,8 +1,19 @@
-import { Text, TouchableOpacity, Image, View, ImageBackground, TextInput, ScrollView, Alert } from "react-native";
+import {
+    Text,
+    TouchableOpacity,
+    Image,
+    View,
+    ImageBackground,
+    TextInput,
+    ScrollView,
+    Alert,
+    StatusBar,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { HandleNext } from "./scripts";
 import styles from "./style";
 import { useState } from "react";
+import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 export default function Login_p() {
     const navigation = useNavigation();
@@ -19,6 +30,7 @@ export default function Login_p() {
                 source={require("../../../../assets/Telas/Secundarias/Login/Backgrounds/Bg_Login.png")}
                 style={[styles.container, { height: height }]}
             >
+                <StatusBar backgroundColor={Global_Colors.PRIMARY_COLOR} barStyle={"light-content"} />
                 {/* Logo Container */}
                 <View style={styles.lgContainer}>
                     <Image source={require("../../../../assets/Telas/Secundarias/Login/CrownSimbol.png")} />

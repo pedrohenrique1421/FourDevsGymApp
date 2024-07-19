@@ -5,16 +5,18 @@ import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 import NavBar_c from "../../../Components/NavBar";
 
-export default function Aulas_p() {
+export default function Aulas_p({ chave }) {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
             {/* NavBar */}
-            <NavBar_c page={"aulas"} />
-            <View style={styles.cpContainer}>
+            <NavBar_c page={"Aulas_p"} />
+            <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 <Text style={styles.cpTitle}>Pagina horarios de aulas</Text>
-                <Text style={styles.cpSubTitle}>Onde terá informações das suas aulas</Text>
+                <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>
+                    Onde terá informações das suas aulas
+                </Text>
             </View>
         </SafeAreaView>
     );

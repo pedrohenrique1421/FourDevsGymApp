@@ -2,6 +2,7 @@ import { View, Image, TouchableOpacity, Text, Animated, TouchableWithoutFeedback
 import { styles, widthSvg, heightSvg } from "./style";
 import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 import Global_Vars from "../../Scripts/GLobal/Global_Var";
+import Dark_Mode_Set from "../../Scripts/Dark_Mode";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 
@@ -15,8 +16,21 @@ import Planos from "../../../assets/Components/MenuLateral/Planos.svg";
 import Produtos from "../../../assets/Components/MenuLateral/Produtos.svg";
 import Treinos from "../../../assets/Components/MenuLateral/Treinos.svg";
 
+// Falta navegar com o parametro chave: key e definir o backgroundColor das outras paginas
+
 export default function Menulateral_c({ page, resetSlide }) {
     const navigation = useNavigation();
+    const [key, setKey] = useState(0);
+    const resetAndNavigate = () => {
+        Dark_Mode_Set();
+        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+        navigation.navigate(page, { chave: key }); // Passa a chave como parâmetro
+    };
+
+    const NavegarPara = (paginaPara) => {
+        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+        navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
+    };
     return (
         <View style={styles.Container}>
             <View>
@@ -25,11 +39,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            navigation.navigate("Home_p");
+                            NavegarPara("Home_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "dashboard" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Home_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Home width={widthSvg} height={heightSvg} />
@@ -39,11 +53,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            navigation.navigate("Treinos_p");
+                            NavegarPara("Treinos_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "treinos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Treinos_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Treinos width={widthSvg} height={heightSvg} />
@@ -53,11 +67,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            navigation.navigate("Aulas_p");
+                            NavegarPara("Aulas_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "aulas" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Aulas_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Aulas width={widthSvg} height={heightSvg} />
@@ -71,11 +85,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            navigation.navigate("Planos_p");
+                            NavegarPara("Planos_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "planos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Planos_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Planos width={widthSvg} height={heightSvg} />
@@ -85,11 +99,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            navigation.navigate("Avisos_p");
+                            NavegarPara("Avisos_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "avisos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Avisos_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Avisos width={widthSvg} height={heightSvg} />
@@ -99,11 +113,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            navigation.navigate("Suporte_p");
+                            NavegarPara("Suporte_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "suporte" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Suporte_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Produtos width={widthSvg} height={heightSvg} />
@@ -116,7 +130,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                 <TouchableOpacity
                     onPress={() => {
                         resetSlide();
-                        navigation.navigate("Perfil_p");
+                        NavegarPara("Perfil_p");
                     }}
                 >
                     <Perfil width={widthSvg + 12} height={heightSvg + 12} />
@@ -127,14 +141,14 @@ export default function Menulateral_c({ page, resetSlide }) {
                         : String(Global_Vars.NOME)}
                 </Text>
                 {/* Elemento de desenvolvimento */}
-                <TouchableOpacity style={styles.BDPImageContainer}>
+                <TouchableOpacity style={styles.BDPImageContainer} onPress={() => resetAndNavigate()}>
                     <Dark_Mode width={widthSvg * 0.8} height={heightSvg * 0.8} />
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.BDPImageContainer}
                     onPress={() => {
                         resetSlide();
-                        navigation.navigate("Config_p");
+                        NavegarPara("Config_p");
                     }}
                 >
                     <Config width={widthSvg * 0.8} height={heightSvg * 0.8} />
