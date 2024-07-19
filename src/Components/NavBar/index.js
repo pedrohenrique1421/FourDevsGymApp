@@ -35,7 +35,7 @@ export default function NavBar_c({ page }) {
         <View style={styles.container}>
             <View style={styles.nvContainer}>
                 <TouchableOpacity
-                    style={{ width: 300 }}
+                    style={styles.menuBtn}
                     onPress={() => {
                         console.log("clickado");
                         !showMenu ? startSliding() : resetSliding();

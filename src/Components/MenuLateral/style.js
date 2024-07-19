@@ -2,7 +2,10 @@ import { StyleSheet, Dimensions, Image } from "react-native";
 import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 
 const { width, height } = Dimensions.get("window");
-// deixar a logo responsivas
+
+const widthSvg = 22.5; // largura das svgs
+const heightSvg = 22.5; // altura das svgs
+
 const styles = StyleSheet.create({
     Container: {
         width: width / 1.5,
@@ -47,8 +50,8 @@ const styles = StyleSheet.create({
         height: 32,
     },
     BDPImageContainer: {
-        width: 40,
-        height: 40,
+        width: widthSvg + 12,
+        height: heightSvg + 12,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: Global_Colors.BW_TERTIARY_COLOR,
@@ -56,4 +59,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default styles;
+export { styles, widthSvg, heightSvg };

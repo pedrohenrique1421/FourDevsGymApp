@@ -10,18 +10,23 @@ const styles = StyleSheet.create({
     },
     nvContainer: {
         width: width,
-        height: height / 12,
         backgroundColor: Global_Colors.PRIMARY_COLOR,
         justifyContent: "space-between",
         alignItems: "center",
         flexDirection: "row",
-        padding: "3%",
+        paddingRight: "3%",
         zIndex: 100,
     },
     backgroundBtn: {
         width: width,
         height: "100%",
         position: "absolute",
+    },
+    menuBtn: {
+        width: 150,
+        paddingLeft: "3%",
+        height: height / 12,
+        justifyContent: "center",
     },
 });
 

@@ -1,8 +1,9 @@
 import { View, Image, TouchableOpacity, Text, Animated, TouchableWithoutFeedback } from "react-native";
-import styles from "./style";
+import { styles, widthSvg, heightSvg } from "./style";
 import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 import Global_Vars from "../../Scripts/GLobal/Global_Var";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 import Aulas from "../../../assets/Components/MenuLateral/Aulas.svg";
 import Avisos from "../../../assets/Components/MenuLateral/Avisos.svg";
@@ -31,7 +32,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "dashboard" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image />
+                        <Home width={widthSvg} height={heightSvg} />
                         <Text style={styles.ItemText}>Dashboard</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -45,7 +46,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "treinos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image />
+                        <Treinos width={widthSvg} height={heightSvg} />
                         <Text style={styles.ItemText}>Meus Treinos</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -59,7 +60,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "aulas" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image />
+                        <Aulas width={widthSvg} height={heightSvg} />
                         <Text style={styles.ItemText}>Horarios de aulas</Text>
                     </TouchableOpacity>
                 </View>
@@ -77,7 +78,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "planos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image />
+                        <Planos width={widthSvg} height={heightSvg} />
                         <Text style={styles.ItemText}>Planos</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -91,7 +92,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "avisos" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image />
+                        <Avisos width={widthSvg} height={heightSvg} />
                         <Text style={styles.ItemText}>Avisos</Text>
                     </TouchableOpacity>
                     {/* Item */}
@@ -105,7 +106,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "suporte" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Image />
+                        <Produtos width={widthSvg} height={heightSvg} />
                         <Text style={styles.ItemText}>Suporte</Text>
                     </TouchableOpacity>
                 </View>
@@ -118,7 +119,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                         navigation.navigate("Perfil_p");
                     }}
                 >
-                    <Image />
+                    <Perfil width={widthSvg + 12} height={heightSvg + 12} />
                 </TouchableOpacity>
                 <Text style={styles.BDPText}>
                     {Global_Vars.NOME.length > 14
@@ -127,7 +128,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                 </Text>
                 {/* Elemento de desenvolvimento */}
                 <TouchableOpacity style={styles.BDPImageContainer}>
-                    <Image />
+                    <Dark_Mode width={widthSvg * 0.8} height={heightSvg * 0.8} />
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.BDPImageContainer}
@@ -136,7 +137,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                         navigation.navigate("Config_p");
                     }}
                 >
-                    <Image />
+                    <Config width={widthSvg * 0.8} height={heightSvg * 0.8} />
                 </TouchableOpacity>
             </View>
         </View>
