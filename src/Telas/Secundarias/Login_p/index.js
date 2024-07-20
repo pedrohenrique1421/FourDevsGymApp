@@ -11,9 +11,9 @@ import {
     ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { HandleNext } from "./scripts";
+import { HandleNext, checkToken } from "./scripts";
 import styles from "./style";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 export default function Login_p() {
@@ -22,6 +22,17 @@ export default function Login_p() {
     const [dtNasc, setDtNasc] = useState("");
     const [height, setHeight] = useState(0);
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const verifyToken = async () => {
+            const tokenExists = await checkToken();
+            if (tokenExists) {
+                navigation.navigate("Home_p");
+            }
+        };
+
+        verifyToken();
+    }, []);
 
     const onLayout = (event) => {
         const { width, height } = event.nativeEvent.layout;

@@ -15,9 +15,12 @@ const styles = StyleSheet.create({
         marginTop: 100,
     },
     cpTitle: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: "700",
         color: "white",
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
+        padding:20,
+        borderRadius:7,
     },
     cpSubTitle: {
         fontSize: 18,

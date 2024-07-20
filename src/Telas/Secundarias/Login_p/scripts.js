@@ -1,3 +1,15 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export async function checkToken() {
+    try {
+        const token = await AsyncStorage.getItem('userToken');
+        return token !== null; // Retorna true se o token existir
+    } catch (error) {
+        console.error("Erro ao verificar o token", error);
+        return false;
+    }
+}
+
 export async function HandleNext(matricula, dtNasc) {
     let apiKey = "3f7e9b8d4c1a2e5b7f6a8c3d9e1b7a2c";
 
@@ -20,9 +32,12 @@ export async function HandleNext(matricula, dtNasc) {
 
             // Processa a resposta da API
             const data = await response.json();
-            if (data.success === true) {
+            if (data.success === false) {
                 console.log("Login realizado com sucesso", data);
-                return false; // Retorna true em caso de sucesso
+                // Armazenar o token e o ID do usuário no AsyncStorage
+                //await AsyncStorage.setItem('userToken', data.token);
+                //await AsyncStorage.setItem('userId', data.userId.toString());
+                return true; // Retorna true em caso de sucesso
             } else {
                 console.error("Erro ao fazer login", data);
                 return false; // Retorna false em caso de erro
