@@ -5,6 +5,9 @@ import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 import NavBar_c from "../../../Components/NavBar";
 
+import User from "../../../../assets/Components/MenuLateral/User.svg";
+import Avisos from "../../../../assets/Components/MenuLateral/Avisos.svg";
+
 export default function Home_p() {
     const navigation = useNavigation();
     return (
@@ -13,8 +16,24 @@ export default function Home_p() {
             {/* NavBar */}
             <NavBar_c page={"dashboard"} />
             <View style={styles.cpContainer}>
-                <Text style={styles.cpTitle}>Pagina inicial ou Dashboard</Text>
-                <Text style={styles.cpSubTitle}>Onde terá informações suas</Text>
+                <Text style={styles.bemVindoText}>Bem Vindo!</Text>
+
+                <View style={styles.usuarioContain}>
+                    <User style={styles.iconContain} width={30} height={30} />
+                    <Text style={styles.cpTitle}>   Wilkenio</Text>
+                </View>
+
+                <Text style={styles.bemVindoText}>Avisos:</Text>
+
+                <View style={styles.avisosContain}>
+                    <Avisos style={styles.iconContainAvisos} width={15} height={15} />
+                    <Text style={styles.cpTitleAvisos}>   Promoção no Plano Mensal</Text>
+                </View>
+
+                <View style={styles.avisosContain}>
+                    <Avisos style={styles.iconContainAvisos} width={15} height={15} />
+                    <Text style={styles.cpTitleAvisos}>   Promoção no Plano Mensal</Text>
+                </View>
             </View>
         </SafeAreaView>
     );
