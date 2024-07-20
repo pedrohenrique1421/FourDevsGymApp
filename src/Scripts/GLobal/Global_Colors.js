@@ -6,4 +6,5 @@ export default class Global_Colors {
     static BW_SECONDARY_COLOR = "#242424";
     static BW_TERTIARY_COLOR = "#DD5E13";
     static BW_QUARTIARY_COLOR = "#efefef";
+    static BW_QUINTERNARY_COLOR = "#242424";
 }

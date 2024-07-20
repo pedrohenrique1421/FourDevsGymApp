@@ -1,5 +1,6 @@
 import { View, Text, TouchableWithoutFeedback, Dimensions, Animated, TouchableOpacity } from "react-native";
 import Menulateral_c from "../MenuLateral";
+import Alerta from "../ALerta";
 import styles from "./style";
 import { useState, useRef } from "react";
 
@@ -49,6 +50,7 @@ export default function NavBar_c({ page }) {
                 <TouchableOpacity onPress={() => resetSliding()} style={styles.backgroundBtn} />
                 <Menulateral_c page={page} resetSlide={resetSliding} />
             </Animated.View>
+            <Alerta type={"sucesso"} tempo={3000} />
         </View>
     );
 }

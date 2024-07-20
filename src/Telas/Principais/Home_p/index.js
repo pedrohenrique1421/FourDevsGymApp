@@ -4,6 +4,7 @@ import styles from "./style";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 import NavBar_c from "../../../Components/NavBar";
+import Alerta from "../../../Components/ALerta";
 
 export default function Home_p({ chave }) {
     const navigation = useNavigation();
