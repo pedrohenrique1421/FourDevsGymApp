@@ -7,6 +7,7 @@ import NavBar_c from "../../../Components/NavBar";
 import Alerta from "../../../Components/ALerta";
 
 export default function Home_p({ chave }) {
+    //navigation.navigate("Login_p")
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
