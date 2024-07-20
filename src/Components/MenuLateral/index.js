@@ -14,6 +14,8 @@ import Perfil from "../../../assets/Components/MenuLateral/Perfil.svg";
 import Planos from "../../../assets/Components/MenuLateral/Planos.svg";
 import Produtos from "../../../assets/Components/MenuLateral/Produtos.svg";
 import Treinos from "../../../assets/Components/MenuLateral/Treinos.svg";
+import Avaliacao from "../../../assets/Components/MenuLateral/Avaliacao.svg";
+import Sair from "../../../assets/Components/MenuLateral/Sair.svg";
 
 export default function Menulateral_c({ page, resetSlide }) {
     const navigation = useNavigation();
@@ -47,7 +49,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                         ]}
                     >
                         <Treinos width={widthSvg} height={heightSvg} />
-                        <Text style={styles.ItemText}>Meus Treinos</Text>
+                        <Text style={styles.ItemText}>Ficha de Treino</Text>
                     </TouchableOpacity>
                     {/* Item */}
                     <TouchableOpacity
@@ -60,8 +62,8 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "aulas" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Aulas width={widthSvg} height={heightSvg} />
-                        <Text style={styles.ItemText}>Horarios de aulas</Text>
+                        <Avaliacao width={widthSvg} height={heightSvg} />
+                        <Text style={styles.ItemText}>Minhas avaliações</Text>
                     </TouchableOpacity>
                 </View>
                 {/* Espaco */}
@@ -79,7 +81,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                         ]}
                     >
                         <Planos width={widthSvg} height={heightSvg} />
-                        <Text style={styles.ItemText}>Planos</Text>
+                        <Text style={styles.ItemText}>Meu Plano</Text>
                     </TouchableOpacity>
                     {/* Item */}
                     <TouchableOpacity
@@ -106,8 +108,8 @@ export default function Menulateral_c({ page, resetSlide }) {
                             page === "suporte" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
-                        <Produtos width={widthSvg} height={heightSvg} />
-                        <Text style={styles.ItemText}>Suporte</Text>
+                        <Sair width={widthSvg} height={heightSvg} />
+                        <Text style={styles.ItemText}>Sair</Text>
                     </TouchableOpacity>
                 </View>
             </View>
