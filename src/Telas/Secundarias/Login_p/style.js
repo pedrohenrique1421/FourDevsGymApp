@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     },
     lgContainerText: {
         fontSize: 30,
-        top:10,
+        top: 10,
     },
     // Inputs Container
     ipContainer: {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         padding: 18,
         width: "90%",
         fontSize: 20,
-        backgroundColor: Global_Colors.BW_SECONDARY_COLOR,
+        backgroundColor: Global_Colors.BW_PRIMARY_COLOR,
         marginBottom: "3%",
     },
     // View btn entrar
@@ -67,12 +67,12 @@ const styles = StyleSheet.create({
     btImage: {
         width: 25,
         height: 25,
-        marginRight:20,
+        marginRight: 20,
     },
     btText: {
         color: Global_Colors.BW_PRIMARY_COLOR,
         fontSize: 15,
-        paddingLeft:20,
+        paddingLeft: 20,
     },
 });
 

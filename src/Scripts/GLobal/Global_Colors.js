@@ -4,6 +4,8 @@ export default class Global_Colors {
     static TERTIARY_COLOR = "#303134";
     // Variaveis de BLACK(preto) e WHITE(branco)
     static BW_PRIMARY_COLOR = "#efefef";
-    static BW_SECONDARY_COLOR = "#f1f1f1";
+    static BW_SECONDARY_COLOR = "#242424";
     static BW_TERTIARY_COLOR = "#DD5E13";
-}//
+    static BW_QUARTIARY_COLOR = "#efefef";
+    static BW_QUINTERNARY_COLOR = "#242424";
+}

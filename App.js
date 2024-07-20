@@ -13,6 +13,7 @@ import Avisos_p from "./src/Telas/Principais/Avisos_p";
 import Config_p from "./src/Telas/Secundarias/Config_p";
 import Perfil_p from "./src/Telas/Secundarias/Perfil_p";
 import Suporte_p from "./src/Telas/Secundarias/Suporte_p";
+import Global_Colors from "./src/Scripts/GLobal/Global_Colors";
 
 const Stack = createStackNavigator();
 
