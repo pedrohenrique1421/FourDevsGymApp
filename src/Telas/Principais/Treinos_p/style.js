@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
     // Conteudo da pagina
     cpContainer: {
         width: "100%",
-        height: "100%",
         justifyContent: "center",
         alignItems: "center",
         position: "absolute",
@@ -19,12 +18,51 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "700",
         color: Global_Colors.PRIMARY_COLOR,
+        marginTop:90
     },
     cpSubTitle: {
         fontSize: 18,
         fontWeight: "600",
         fontStyle: "italic",
     },
+    nomeDia:{
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
+        color:Global_Colors.BW_PRIMARY_COLOR,
+        textAlign:"center",
+        fontWeight:"600",
+        borderTopLeftRadius:5,
+        borderTopRightRadius: 5,
+        padding:10
+    },
+    treino:{
+        width:"100%",
+        alignItems:"center"
+    },
+    nomeTreino:{
+        marginTop:100,
+        marginBottom:20,
+        fontSize:20,
+        color:Global_Colors.PRIMARY_COLOR,
+        fontWeight:"900"
+    },
+    dia:{
+        width:"85%"
+    },
+    exercicio:{
+        padding:5,
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"space-between",
+        borderBottomWidth:1,
+        borderColor:Global_Colors.QUARTENARY_COLOR,
+    },
+    imageExercicio:{
+        width:100,
+        height:70
+    },
+    rep:{
+        marginRight:5
+    }
 });
 
 export default styles;
