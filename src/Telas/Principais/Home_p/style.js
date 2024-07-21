@@ -1,12 +1,12 @@
-import { StyleSheet, Dimensions, Image } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 const { width, height } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    // Conteudo da pagina
     cpContainer: {
         width: "90%",
         margin: 30,
@@ -18,52 +18,39 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "700",
         color: "white",
-        backgroundColor:Global_Colors.PRIMARY_COLOR,
-        padding:20,
-        borderRadius:7,
     },
     cpSubTitle: {
         fontSize: 18,
         fontWeight: "600",
         fontStyle: "italic",
+        marginBottom: 10,
+        marginTop:15,
     },
-    usuarioContain: {
-        fontSize: 24,
-        fontWeight: "700",
-        display: "flex",
-        flexDirection: "row",
+    containUser:{
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
         padding: 20,
-        paddingLeft: 50,
-        backgroundColor: Global_Colors.PRIMARY_COLOR,
-        borderRadius: 20,
-        marginBottom: 10,
-    },
-    bemVindoText: {
-        marginBottom: 10,
-        fontSize: 20,
-    },
-    iconContain: {
-        width: 30
-    },
-    avisosContain: {
-        fontSize: 5,
-        fontWeight: "700",
-        display: "flex",
+        borderRadius: 7,
         flexDirection: "row",
-        alignItems: "center",
+        alignItems:"center"
+    },
+    iconUser: {
+        marginRight: 10, // Adiciona margem direita para espaçamento
+    },
+
+    containAvisos:{
+        backgroundColor:Global_Colors.TERTIARY_COLOR,
         padding: 10,
-        paddingLeft: 20,
-        backgroundColor: Global_Colors.TERTIARY_COLOR,
-        borderRadius: 10,
-        marginTop:7
+        paddingLeft:22,
+        borderRadius: 7,
+        flexDirection: "row",
+        alignItems:"center",
+        marginTop:5,
+        fontSize:10
     },
     cpTitleAvisos: {
         fontSize: 14,
-        fontWeight: "700",
+        fontWeight: "500",
         color: "white",
-    },
-    iconContainAvisos: {
-        width: 1, // Ajuste o tamanho conforme necessário
     },
 });
 
