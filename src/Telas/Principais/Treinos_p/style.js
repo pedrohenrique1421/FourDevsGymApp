@@ -4,15 +4,19 @@ import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+      alignItems:"center",
+      justifyContent:"center",
+      height:"100%",
+      backgroundColor:"green",
+      overflow:"auto",
     },
+    
     // Conteudo da pagina
     cpContainer: {
         width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "absolute",
-        zIndex: 10,
+        alignItems:"center",
+        backgroundColor:"red",
+        overflow:"auto",
     },
     cpTitle: {
         fontSize: 24,
@@ -46,7 +50,8 @@ const styles = StyleSheet.create({
         fontWeight:"900"
     },
     dia:{
-        width:"85%"
+        width:"85%",
+        marginTop:5,
     },
     exercicio:{
         padding:5,

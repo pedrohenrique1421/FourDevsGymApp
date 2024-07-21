@@ -1,40 +1,118 @@
-import { Text, SafeAreaView, View, StatusBar, Dimensions, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import styles from "./style";
-import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
+import React, { useEffect, useState } from 'react';
+import { Text, SafeAreaView, View, StatusBar, Image } from 'react-native';
+import styles from './style';
+import Global_Colors from '../../../Scripts/GLobal/Global_Colors';
+import NavBar_c from '../../../Components/NavBar';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import NavBar_c from "../../../Components/NavBar";
+export default function Treino_p() {
+    const [treinoData, setTreinoData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-export default function Treino_p({ chave }) {
-    const navigation = useNavigation();
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const token = await AsyncStorage.getItem('userToken');
+                const id = await AsyncStorage.getItem('userId');
+
+                if (!token || !id) {
+                    setError('Token ou ID do usuário não encontrado.');
+                    setLoading(false);
+                    return;
+                }
+
+                // Requisição para a API para obter os dados do aluno
+                const studentResponse = await fetch(`https://apigym-fourdevs.vercel.app/student/${id}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!studentResponse.ok) {
+                    throw new Error('Erro ao obter dados do aluno.');
+                }
+
+                const studentData = await studentResponse.json();
+                const treinoID = studentData.conteudoJson.id_treino;
+
+                // Requisição para a segunda API usando id_aluno
+                const treinoResponse = await fetch(`https://apigym-fourdevs.vercel.app/training/${treinoID}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!treinoResponse.ok) {
+                    throw new Error('Erro ao obter dados do treino.');
+                }
+
+                const treinoData = await treinoResponse.json();
+                setTreinoData(treinoData.conteudoJson);
+
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    if (loading) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
+                <NavBar_c page={"Treinos_p"} />
+                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
+                    <Text style={styles.loading}>Carregando...</Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    if (error) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
+                <NavBar_c page={"Treinos_p"} />
+                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
+                    <Text style={styles.error}>Erro: {error}</Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
-            {/* NavBar */}
             <NavBar_c page={"Treinos_p"} />
-            <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
-
-                {/* <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Onde terá treinos</Text> */}
-
-                <View style={styles.treino}>
-                <Text style={styles.nomeTreino}>Treino 1</Text>
-                    <View style={styles.dia}>
-                        <Text style={styles.nomeDia}>Dia 1</Text>
-                        <View style={styles.exercicio}>
-                        <Image
-                source={{ uri: 'https://www.hipertrofia.org/blog/wp-content/uploads/2023/09/smith-bench-press.gif' }}
-                style={styles.imageExercicio}
-            />
-                            <Text style={styles.nomeExercicio}>Supino Retoo</Text>
-                            <Text style={styles.series}>3</Text>
-                            <Text>X</Text>
-                            <Text style={styles.rep}>12</Text>
-                        </View>
+            <View style={styles.cpContainer}>
+                <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
+                {treinoData?.dias.map(dia => (
+                    <View key={dia.id_dia} style={styles.dia}>
+                        <Text style={styles.nomeDia}>Dia {dia.id_dia}</Text>
+                        {dia.exercicios.map(exercicio => (
+                            <View key={exercicio.id_exercicio} style={styles.exercicio}>
+                                <Image
+                                    source={{ uri: `${exercicio.gif_url}` }} // Ajuste a URL conforme necessário
+                                    style={styles.imageExercicio}
+                                />
+                                <Text style={styles.nomeExercicio}>Exercício {exercicio.id_exercicio}</Text>
+                                <Text style={styles.series}>{exercicio.series}</Text>
+                                <Text>X</Text>
+                                <Text style={styles.rep}>{exercicio.repeticoes}</Text>
+                            </View>
+                        ))}
                     </View>
-                </View>
+                ))}
+
             </View>
-
-
         </SafeAreaView>
     );
 }

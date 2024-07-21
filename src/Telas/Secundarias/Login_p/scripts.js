@@ -37,6 +37,8 @@ export async function HandleNext(matricula, dtNasc) {
                 // Armazenar o token e o ID do usuário no AsyncStorage
                 //await AsyncStorage.setItem('userToken', data.token);
                 //await AsyncStorage.setItem('userId', data.userId.toString());
+                await AsyncStorage.setItem('userToken', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hZG0iOjMsImVtYWlsIjoicGVyc29uYWxAZ21haWwuY29tIiwibm9tZSI6Ikd1dGVtYmVyZyIsImNhcmdvIjoicGVyc29uYWwiLCJpZF9hY2FkZW1pYSI6MSwiZGF0YV9jcmlhY2FvIjoiMDgvMDcvMjAyNCAwMDowMDowMCIsImRhdGFfYXR1YWxpemFjYW8iOiIwOC8wNy8yMDI0IDE0OjQ1OjUxIiwibm9tZV9hY2FkZW1pYSI6IlNvYXJlcyBGSVQiLCJpYXQiOjE3MjE1NjIxMDIsImV4cCI6MTcyMjE2NjkwMn0.Th0hsuxpzceEjHlGJeFpK2hvfEq7j6SQ4Uo3WrpO_j4");
+                await AsyncStorage.setItem('userId', "10");
                 return true; // Retorna true em caso de sucesso
             } else {
                 console.error("Erro ao fazer login", data);
