@@ -12,37 +12,41 @@ export async function checkToken() {
 
 export async function HandleNext(matricula, dtNasc) {
     let apiKey = "3f7e9b8d4c1a2e5b7f6a8c3d9e1b7a2c";
+    const dtNascc = formatDate(dtNasc);
 
-    // Verifica se os campos estão preenchidos
     if (matricula.length > 0 && dtNasc.length > 0 && apiKey.length > 0) {
         try {
-            console.log("chamando a api...");
-            // Faz a requisição à API
-            const response = await fetch('https://apigym-fourdevs.vercel.app/adm/login', {
+            const response = await fetch('https://apigym-fourdevs.vercel.app/student/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
                     matricula: matricula,
-                    dtNascimento: dtNasc,
+                    nascimento: dtNascc,
                     key: apiKey
                 })
             });
 
-            // Processa a resposta da API
             const data = await response.json();
-            if (data.success === false) {
-                console.log("Login realizado com sucesso", data);
-                // Armazenar o token e o ID do usuário no AsyncStorage
-                //await AsyncStorage.setItem('userToken', data.token);
-                //await AsyncStorage.setItem('userId', data.userId.toString());
-                await AsyncStorage.setItem('userToken', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hZG0iOjMsImVtYWlsIjoicGVyc29uYWxAZ21haWwuY29tIiwibm9tZSI6Ikd1dGVtYmVyZyIsImNhcmdvIjoicGVyc29uYWwiLCJpZF9hY2FkZW1pYSI6MSwiZGF0YV9jcmlhY2FvIjoiMDgvMDcvMjAyNCAwMDowMDowMCIsImRhdGFfYXR1YWxpemFjYW8iOiIwOC8wNy8yMDI0IDE0OjQ1OjUxIiwibm9tZV9hY2FkZW1pYSI6IlNvYXJlcyBGSVQiLCJpYXQiOjE3MjE1NjIxMDIsImV4cCI6MTcyMjE2NjkwMn0.Th0hsuxpzceEjHlGJeFpK2hvfEq7j6SQ4Uo3WrpO_j4");
-                await AsyncStorage.setItem('userId', "10");
-                return true; // Retorna true em caso de sucesso
+
+            if (data.success === true) {
+                const token = data.conteudoJson.token;
+                const userId = data.conteudoJson.usuario.id_aluno;
+                console.log(userId)
+                if (token && userId) {
+                    //precisa chamar a variavel "token", estou esperando o back resolver conflito de acesso do token
+                    await AsyncStorage.setItem('userToken', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hZG0iOjEsImVtYWlsIjoiZG9ub0BnbWFpbC5jb20iLCJub21lIjoiV2lsa2VuaW8iLCJjYXJnbyI6ImRvbm8iLCJpZF9hY2FkZW1pYSI6MSwiZGF0YV9jcmlhY2FvIjoiMDgvMDcvMjAyNCAwMDowMDowMCIsImRhdGFfYXR1YWxpemFjYW8iOiIwOC8wNy8yMDI0IDE0OjQyOjI0Iiwibm9tZV9hY2FkZW1pYSI6IlNvYXJlcyBGSVQiLCJpYXQiOjE3MjE2ODM1NzMsImV4cCI6MTcyMjI4ODM3M30.TzcWbGXflB_fSGjPxuw6jSPxLC46i8uKEsUnd2HHDXE");
+                    await AsyncStorage.setItem('userId', userId.toString());
+                    console.log("Login realizado com sucesso", data);
+                    return true;
+                } else {
+                    console.error("Token ou ID do aluno ausentes na resposta da API");
+                    return false;
+                }
             } else {
                 console.error("Erro ao fazer login", data);
-                return false; // Retorna false em caso de erro
+                return false;
             }
         } catch (error) {
             console.error("Erro na requisição", error);
@@ -52,4 +56,22 @@ export async function HandleNext(matricula, dtNasc) {
         console.log("Campos não preenchidos corretamente");
         return false;
     }
+}
+
+function formatDate(dateString) {
+    const dateParts = dateString.split('/');
+    if (dateParts.length !== 3) {
+        throw new Error('Data no formato inválido');
+    }
+
+    const day = dateParts[0];
+    const month = dateParts[1];
+    const year = dateParts[2];
+
+    if (day === '00' || month === '00' || year === '0000') {
+        throw new Error('Data inválida');
+    }
+
+    const formattedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    return formattedDate;
 }

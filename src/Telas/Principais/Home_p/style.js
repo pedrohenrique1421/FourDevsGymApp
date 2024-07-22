@@ -52,6 +52,17 @@ const styles = StyleSheet.create({
         fontWeight: "500",
         color: "white",
     },
+    buttonMaisAvisos:{
+        alignItems:"center",
+        marginTop:20
+    },
+    textButtonAvisos:{
+        padding:10,
+        borderRadius:5,
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
+        color:Global_Colors.BW_PRIMARY_COLOR,
+        fontWeight:"600",
+    }
 });
 
 export default styles;
