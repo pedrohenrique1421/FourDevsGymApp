@@ -26,11 +26,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderBottomRightRadius: 12,
         borderTopRightRadius: 12,
+        paddingLeft:30
     },
     ItemText: {
         color: Global_Colors.BW_PRIMARY_COLOR,
         fontSize: 20,
-        fontWeight: "700",
+        fontWeight: "400",
     },
     ItemImage: {
         height: 24,

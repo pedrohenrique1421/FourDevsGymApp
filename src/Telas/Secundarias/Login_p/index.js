@@ -8,11 +8,12 @@ import {
     ScrollView,
     Alert,
     StatusBar,
+    ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { HandleNext } from "./scripts";
+import { HandleNext, checkToken } from "./scripts";
 import styles from "./style";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 export default function Login_p() {
@@ -20,10 +21,36 @@ export default function Login_p() {
     const [matricula, setMatricula] = useState("");
     const [dtNasc, setDtNasc] = useState("");
     const [height, setHeight] = useState(0);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const verifyToken = async () => {
+            const tokenExists = await checkToken();
+            if (tokenExists) {
+                navigation.navigate("Home_p");
+            }
+        };
+
+        verifyToken();
+    }, []);
+
     const onLayout = (event) => {
         const { width, height } = event.nativeEvent.layout;
         setHeight(height);
     };
+
+    const handleLogin = async () => {
+        setLoading(true);
+        const isLoggedIn = await HandleNext(matricula, dtNasc);
+        setLoading(false);
+
+        if (isLoggedIn) {
+            navigation.navigate("Home_p");
+        } else {
+            Alert.alert("Erro no login", "Matricula ou data de nascimento errados");
+        }
+    };
+
     return (
         <ScrollView style={styles.scrollContainer} onLayout={onLayout}>
             <ImageBackground
@@ -55,17 +82,20 @@ export default function Login_p() {
                 <View style={styles.btContainer}>
                     <TouchableOpacity
                         style={styles.btBtn}
-                        onPress={() => {
-                            HandleNext(matricula, dtNasc)
-                                ? navigation.navigate("Home_p")
-                                : Alert.alert("Erro no login", "Matricula ou data de nascimento errados");
-                        }}
+                        onPress={handleLogin}
+                        disabled={loading}
                     >
-                        <Text style={styles.btText}>Entrar</Text>
-                        <Image
-                            source={require("../../../../assets/Telas/Secundarias/Login/entrar_sb.png")}
-                            style={styles.btImage}
-                        />
+                        {loading ? (
+                            <ActivityIndicator size="small" color="#FFF" />
+                        ) : (
+                            <>
+                                <Text style={styles.btText}>Entrar</Text>
+                                <Image
+                                    source={require("../../../../assets/Telas/Secundarias/Login/entrar_sb.png")}
+                                    style={styles.btImage}
+                                />
+                            </>
+                        )}
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
