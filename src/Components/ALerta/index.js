@@ -3,7 +3,7 @@ import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 import styles from "./style";
 import { useCallback, useRef, useEffect } from "react";
 
-export default function Alerta({ tempo, type, funcaoDeRetorno }) {
+export default function Alerta({ tempo, type, funcaoDeRetorno, onEnd }) {
     const { width, height } = Dimensions.get("window");
     const slideAnim = useRef(new Animated.Value(width / 2)).current;
 
@@ -18,7 +18,6 @@ export default function Alerta({ tempo, type, funcaoDeRetorno }) {
                 toValue: width / 2,
                 duration: 1500,
                 useNativeDriver: true,
-                delay: 1000,
             }),
             Animated.timing(slideAnim, {
                 toValue: 0,
@@ -36,12 +35,18 @@ export default function Alerta({ tempo, type, funcaoDeRetorno }) {
                 duration: 1500, //
                 useNativeDriver: true,
             }),
-        ]).start();
+        ]).start(HandleFuncaoEnd);
     };
 
     const HandleFuncao = useCallback(() => {
         if (typeof funcaoDeRetorno === "function") {
             funcaoDeRetorno();
+        }
+    }, [funcaoDeRetorno]);
+
+    const HandleFuncaoEnd = useCallback(() => {
+        if (typeof onEnd === "function") {
+            onEnd();
         }
     }, [funcaoDeRetorno]);
     return (

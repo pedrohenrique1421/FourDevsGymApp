@@ -10,10 +10,14 @@ import { useState } from "react";
 export default function Home_p({ chave }) {
     const navigation = useNavigation();
     const [showAlerta, setShowAlerta] = useState(false);
+    const HandleOnEnd = () => {
+        setShowAlerta(!showAlerta);
+        console.log("alerta desfeito");
+    };
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
-            {showAlerta ? <Alerta type={"sucesso"} tempo={2000} /> : <View />}
+            {showAlerta ? <Alerta type={"sucesso"} tempo={2000} onEnd={HandleOnEnd} /> : <View />}
             {/* NavBar */}
             <NavBar_c page={"Home_p"} />
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
@@ -21,10 +25,7 @@ export default function Home_p({ chave }) {
                 <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>
                     Onde terá informações suas
                 </Text>
-                <TouchableOpacity
-                    onPressIn={() => setShowAlerta(!showAlerta)}
-                    onPressOut={() => setShowAlerta(!showAlerta)}
-                >
+                <TouchableOpacity onPress={() => setShowAlerta(!showAlerta)}>
                     <Text>Exibir alerta</Text>
                 </TouchableOpacity>
             </View>
