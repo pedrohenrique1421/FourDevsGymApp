@@ -81,20 +81,6 @@ export default function Home_p({ chave }) {
         fetchData();
     }, [userId, userToken]);
 
-    const clearStorage = async () => {
-        try {
-            await AsyncStorage.removeItem('userId');
-            await AsyncStorage.removeItem('userToken');
-            setUserId(null);
-            setUserToken(null);
-            setUserName('Loading...');
-            setAvisos([]);
-            console.log('Dados limpos');
-        } catch (error) {
-            console.error('Error clearing AsyncStorage:', error);
-        }
-    };
-
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
@@ -133,9 +119,6 @@ export default function Home_p({ chave }) {
 
                     </TouchableOpacity>
                     {/* Botão para limpar informações */}
-                    <TouchableOpacity onPress={clearStorage}>
-                        <Text style={styles.buttonText}>Limpar Informações</Text>
-                    </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => setShowAlerta(!showAlerta)}>
                         <Text>Exibir alerta</Text>
