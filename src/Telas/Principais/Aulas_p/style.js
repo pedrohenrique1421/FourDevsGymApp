@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     cpContainer: {
         width: "100%",
         height: "100%",
-        justifyContent: "center",
         alignItems: "center",
         position: "absolute",
         zIndex: 10,
@@ -25,6 +24,24 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontStyle: "italic",
     },
+    accordionTotal:{
+        width:"100%",
+        alignItems:"center",
+        marginTop:100,
+    },
+    accordionCard:{
+        width:"80%"
+    },
+    accordionTitle:{
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
+        color:Global_Colors.BW_PRIMARY_COLOR,
+        padding:20,
+    },
+    title:{
+        fontSize:20,
+        color:Global_Colors.BW_SECONDARY_COLOR,
+        marginBottom:20
+    }
 });
 
 export default styles;
