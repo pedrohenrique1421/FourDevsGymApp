@@ -22,6 +22,7 @@ import Sair from "../../../assets/Components/MenuLateral/Sair.svg";
 export default function Menulateral_c({ page, resetSlide }) {
     const navigation = useNavigation();
     const [nome, setNome] = useState("");
+    const [key, setKey] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -64,7 +65,8 @@ export default function Menulateral_c({ page, resetSlide }) {
     };
 
     const NavegarPara = (paginaPara) => {
-        navigation.navigate(paginaPara); // Atualiza a navegação
+        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+        navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
     };
 
     return (
