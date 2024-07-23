@@ -90,6 +90,7 @@ export default function Home_p({ chave }) {
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Bem vindo!</Text>
 
+
                 <View style={styles.containUser}>
                     <Home width={20} height={20} style={styles.iconUser} />
                     <Text style={styles.cpTitle}>{userName}</Text>
