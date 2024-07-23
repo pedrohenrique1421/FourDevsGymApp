@@ -1,12 +1,10 @@
-import { View, Text, TouchableOpacity, Animated, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, Animated } from "react-native";
 import styles from "./style";
-import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 import { useCallback, useRef, useEffect } from "react";
 
 // Ajeitar a animacao
 
 export default function PopUp({ texts, btn1F, btn2F, Alerta }) {
-    const { width, height } = Dimensions.get("window");
     const slideAnim = useRef(new Animated.Value(0)).current;
     const HandleExecutarFuncao = useCallback((funcao) => {
         if (typeof funcao === "function") {
@@ -16,7 +14,9 @@ export default function PopUp({ texts, btn1F, btn2F, Alerta }) {
                     duration: 1500,
                     useNativeDriver: true,
                 }),
-            ]).start(funcao());
+            ]).start(() => {
+                funcao();
+            });
         }
     }, []);
 
