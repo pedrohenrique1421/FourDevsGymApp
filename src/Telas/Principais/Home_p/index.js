@@ -99,12 +99,10 @@ export default function Home_p({ chave }) {
 
                 <View style={styles.Avisos}>
                     {avisos.slice(0, 3).map((aviso) => (
-                        <TouchableOpacity key={aviso.id_aviso} onPress={() => handleAvisoClick(aviso)}>
-                            <View style={styles.containAvisos}>
-                                <Avisos width={20} height={20} style={styles.iconUser} />
-                                <Text style={styles.cpTitleAvisos}>{aviso.titulo}</Text>
-                            </View>
-                        </TouchableOpacity>
+                        <View style={styles.containAvisos}>
+                            <Avisos width={20} height={20} style={styles.iconUser} />
+                            <Text style={styles.cpTitleAvisos}>{aviso.titulo}</Text>
+                        </View>
                     ))}
 
                     <TouchableOpacity
@@ -115,9 +113,10 @@ export default function Home_p({ chave }) {
                     >
                         <View style={styles.buttonMaisAvisos}>
                             <Text style={styles.textButtonAvisos}>Todos Avisos +</Text>
-                        </View>
 
+                        </View>
                     </TouchableOpacity>
+
                     {/* Botão para limpar informações */}
 
                     <TouchableOpacity onPress={() => setShowAlerta(!showAlerta)}>
