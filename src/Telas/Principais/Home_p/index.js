@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./style";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import NavBar_c from "../../../Components/NavBar";
-import Alerta from "../../../Components/ALerta";
+import Alerta from "../../../Components/Alerta";
 import { useState, useEffect } from "react";
 import Home from "../../../../assets/Components/MenuLateral/User.svg";
 import Avisos from "../../../../assets/Components/MenuLateral/Avisos.svg";

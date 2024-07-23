@@ -1,7 +1,5 @@
 import { View, Text, TouchableWithoutFeedback, Dimensions, Animated, TouchableOpacity } from "react-native";
 import Menulateral_c from "../MenuLateral";
-import PopUp from "../PopUp";
-import Alerta from "../ALerta";
 import styles from "./style";
 import { useState, useRef } from "react";
 

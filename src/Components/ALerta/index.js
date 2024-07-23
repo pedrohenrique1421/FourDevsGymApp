@@ -5,34 +5,33 @@ import { useCallback, useRef, useEffect } from "react";
 
 export default function Alerta({ tempo, type, funcaoDeRetorno, onEnd }) {
     const { width, height } = Dimensions.get("window");
-    const slideAnim = useRef(new Animated.Value(width / 2)).current;
+    const slideAnim = useRef(new Animated.Value(width / 2.5)).current;
 
     useEffect(() => {
         animation();
-        console.log("animacao");
     }, []);
 
     const animation = () => {
         Animated.sequence([
             Animated.timing(slideAnim, {
-                toValue: width / 2,
-                duration: 1500,
+                toValue: width / 2.5,
+                duration: 1000,
                 useNativeDriver: true,
             }),
             Animated.timing(slideAnim, {
                 toValue: 0,
-                duration: 1500, //
+                duration: 1000, //
                 useNativeDriver: true,
             }),
             Animated.timing(slideAnim, {
                 toValue: 0,
-                duration: 1500,
+                duration: 1000,
                 useNativeDriver: true,
                 delay: tempo,
             }),
             Animated.timing(slideAnim, {
-                toValue: width / 2,
-                duration: 1500, //
+                toValue: width / 2.5,
+                duration: 1000, //
                 useNativeDriver: true,
             }),
         ]).start(HandleFuncaoEnd);
