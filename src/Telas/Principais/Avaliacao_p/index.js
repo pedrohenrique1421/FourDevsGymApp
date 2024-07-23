@@ -18,7 +18,7 @@ const fetchEvaluations = async (token) => {
         });
         const data = await response.json();
         if (data.conteudoJson.message === "Não autorizado.") {
-            NavegarPara("Suporte_p")
+            NavegarPara("Sair_p")
         }
         return data;
     } catch (error) {

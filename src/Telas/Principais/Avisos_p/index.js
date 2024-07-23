@@ -39,7 +39,7 @@ export default function Avisos_p({ chave }) {
                 if (data.success) {
                     setAvisos(data.conteudoJson);
                 }else if (data.conteudoJson.message === "Não autorizado.") {
-                    NavegarPara("Suporte_p")
+                    NavegarPara("Sair_p")
                 }
             } catch (error) {
                 console.error("Erro ao buscar avisos:", error);

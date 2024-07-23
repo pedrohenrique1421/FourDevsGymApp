@@ -102,11 +102,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            NavegarPara("Aulas_p");
+                            NavegarPara("Avaliacao_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "Aulas_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Avaliacao_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Avaliacao width={widthSvg} height={heightSvg} />
@@ -148,11 +148,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            NavegarPara("Suporte_p");
+                            NavegarPara("Sair_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "Suporte_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Sair_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Sair width={widthSvg} height={heightSvg} />

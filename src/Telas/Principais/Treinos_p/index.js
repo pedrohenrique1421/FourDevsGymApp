@@ -63,7 +63,7 @@ export default function Treino_p() {
                 setTreinoData(treinoData.conteudoJson);
                 console.log(treinoData)
                 if (treinoData.conteudoJson.message === "Não autorizado.") {
-                    NavegarPara("Suporte_p")
+                    NavegarPara("Sair_p")
                 }
             } catch (error) {
                 setError(error.message);

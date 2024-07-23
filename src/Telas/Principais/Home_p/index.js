@@ -73,7 +73,7 @@ export default function Home_p({ chave }) {
                     if (noticesData.success) {
                         setAvisos(noticesData.conteudoJson);
                     } else if (noticesData.conteudoJson.message === "Não autorizado.") {
-                        NavegarPara("Suporte_p")
+                        NavegarPara("Sair_p")
                     }
                 }
 
