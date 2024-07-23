@@ -1,6 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-
 //import de paginas
 import Cadastro_p from "./src/Telas/Secundarias/Cadastro_p";
 import Login_p from "./src/Telas/Secundarias/Login_p";
@@ -13,7 +12,7 @@ import Avisos_p from "./src/Telas/Principais/Avisos_p";
 import Config_p from "./src/Telas/Secundarias/Config_p";
 import Perfil_p from "./src/Telas/Secundarias/Perfil_p";
 import Suporte_p from "./src/Telas/Secundarias/Suporte_p";
-import Global_Colors from "./src/Scripts/GLobal/Global_Colors";
+import Loading_p from "./src/Telas/Secundarias/Loading_p";
 
 const Stack = createStackNavigator();
 
@@ -53,6 +52,7 @@ export default function App() {
                 <Stack.Screen name="Avisos_p" component={Avisos_p} />
                 <Stack.Screen name="Perfil_p" component={Perfil_p} />
                 <Stack.Screen name="Suporte_p" component={Suporte_p} />
+                <Stack.Screen name="Loading_p" component={Loading_p} />
             </Stack.Navigator>
         </NavigationContainer>
     );

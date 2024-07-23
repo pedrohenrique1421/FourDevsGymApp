@@ -16,6 +16,7 @@ export default function Home_p({ chave }) {
         setShowAlerta(!showAlerta);
         console.log("alerta desfeito");
     };
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />

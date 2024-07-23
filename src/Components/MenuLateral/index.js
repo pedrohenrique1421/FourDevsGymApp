@@ -2,7 +2,7 @@ import { View, Image, TouchableOpacity, Text, Animated, TouchableWithoutFeedback
 import { styles, widthSvg, heightSvg } from "./style";
 import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 import Global_Vars from "../../Scripts/GLobal/Global_Var";
-import Dark_Mode_Set from "../../Scripts/Dark_Mode";
+import { Dark_Mode_Set } from "../../Scripts/Dark_Mode";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 

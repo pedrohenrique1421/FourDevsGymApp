@@ -39,7 +39,7 @@ export default function Login_p() {
         setHeight(height);
     };
 
-    const handleLogin = async () => {
+    const HandleLogin = async () => {
         setLoading(true);
         const isLoggedIn = await HandleNext(matricula, dtNasc);
         setLoading(false);
@@ -80,13 +80,9 @@ export default function Login_p() {
                 </View>
                 {/* View btn entrar */}
                 <View style={styles.btContainer}>
-                    <TouchableOpacity
-                        style={styles.btBtn}
-                        onPress={handleLogin}
-                        disabled={loading}
-                    >
+                    <TouchableOpacity style={styles.btBtn} onPress={HandleLogin} disabled={loading}>
                         {loading ? (
-                            <ActivityIndicator size="small" color="#FFF" />
+                            <ActivityIndicator size="small" color={Global_Colors.BW_PRIMARY_COLOR} />
                         ) : (
                             <>
                                 <Text style={styles.btText}>Entrar</Text>
