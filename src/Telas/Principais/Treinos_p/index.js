@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, SafeAreaView, View, StatusBar, Image } from 'react-native';
+import { Text, SafeAreaView, View, StatusBar, Image, ScrollView } from 'react-native';
 import styles from './style';
 import Global_Colors from '../../../Scripts/GLobal/Global_Colors';
 import NavBar_c from '../../../Components/NavBar';
@@ -21,6 +21,7 @@ export default function Treino_p() {
                     setLoading(false);
                     return;
                 }
+
 
                 // Requisição para a API para obter os dados do aluno
                 const studentResponse = await fetch(`https://apigym-fourdevs.vercel.app/student/${id}`, {
@@ -89,10 +90,11 @@ export default function Treino_p() {
     }
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container} backgroundColor={Global_Colors.BW_PRIMARY_COLOR}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
             <NavBar_c page={"Treinos_p"} />
             <View style={styles.cpContainer}>
+                <ScrollView width={"100%"}>
                 <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
                 {treinoData?.dias.map(dia => (
                     <View key={dia.id_dia} style={styles.dia}>
@@ -105,13 +107,13 @@ export default function Treino_p() {
                                 />
                                 <Text style={styles.nomeExercicio}>Exercício {exercicio.id_exercicio}</Text>
                                 <Text style={styles.series}>{exercicio.series}</Text>
-                                <Text>X</Text>
+                                <Text style={styles.division}>X</Text>
                                 <Text style={styles.rep}>{exercicio.repeticoes}</Text>
                             </View>
                         ))}
                     </View>
                 ))}
-
+</ScrollView>
             </View>
         </SafeAreaView>
     );
