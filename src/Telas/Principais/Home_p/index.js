@@ -5,18 +5,10 @@ import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 
 import NavBar_c from "../../../Components/NavBar";
 import Alerta from "../../../Components/ALerta";
-import { useState } from "react";
 import Home from "../../../../assets/Components/MenuLateral/User.svg";
 import Avisos from "../../../../assets/Components/MenuLateral/Avisos.svg";
 
 export default function Home_p({ chave }) {
-    const navigation = useNavigation();
-    const [showAlerta, setShowAlerta] = useState(false);
-    const HandleOnEnd = () => {
-        setShowAlerta(!showAlerta);
-        console.log("alerta desfeito");
-    };
-
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
@@ -43,9 +35,6 @@ export default function Home_p({ chave }) {
                         <Avisos width={20} height={20} style={styles.iconUser} />
                         <Text style={styles.cpTitleAvisos}>Promoção no plano Trimestral !</Text>
                     </View>
-                    <TouchableOpacity onPress={() => setShowAlerta(!showAlerta)}>
-                        <Text>Exibir alerta</Text>
-                    </TouchableOpacity>
                 </View>
             </View>
         </SafeAreaView>

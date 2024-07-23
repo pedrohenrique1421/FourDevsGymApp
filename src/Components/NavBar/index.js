@@ -10,7 +10,6 @@ import Logo from "../../../assets/Components/NavBar_sb/Logo.svg";
 
 export default function NavBar_c({ page }) {
     const [showMenu, setShowMenu] = useState(false);
-    const [popUp, setPopUp] = useState(false);
     const { width, height } = Dimensions.get("window");
     const slideAnim = useRef(new Animated.Value(width * -1)).current;
     //#region
@@ -34,10 +33,6 @@ export default function NavBar_c({ page }) {
         setShowMenu(false);
     };
     //#endregion
-
-    const HandleFecharPopUp = () => {
-        setPopUp(!popUp);
-    };
     return (
         <View style={styles.container}>
             <View style={styles.nvContainer}>
@@ -50,29 +45,12 @@ export default function NavBar_c({ page }) {
                 >
                     <Lista height={25} />
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setPopUp(!popUp)}>
-                    <Logo height={30} width={30} />
-                </TouchableOpacity>
+                <Logo height={30} width={30} />
             </View>
             <Animated.View style={{ transform: [{ translateX: slideAnim }], zIndex: 1000, width: width }}>
                 <TouchableOpacity onPress={() => resetSliding()} style={styles.backgroundBtn} />
                 <Menulateral_c page={page} resetSlide={resetSliding} />
             </Animated.View>
-            {popUp ? (
-                <PopUp
-                    texts={{
-                        titulo: "Conexão falha",
-                        texto: "Não foi possível estabelecer uma conexão com o servidor. Texnte novamente em alguns instantes ou experimente fechar o aplicativo e abrir novamente.",
-                        btn1: "cancelar",
-                        btn2: "ok",
-                    }}
-                    Alerta={<Alerta type={"error"} tempo={3000} />}
-                    btn1F={() => HandleFecharPopUp()}
-                    btn2F={() => HandleFecharPopUp()}
-                />
-            ) : (
-                <View />
-            )}
         </View>
     );
 }
