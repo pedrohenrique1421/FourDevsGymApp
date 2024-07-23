@@ -15,6 +15,7 @@ import { HandleNext, checkToken } from "./scripts";
 import styles from "./style";
 import { useState, useEffect } from "react";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function Login_p() {
     const navigation = useNavigation();
@@ -22,6 +23,7 @@ export default function Login_p() {
     const [dtNasc, setDtNasc] = useState("");
     const [height, setHeight] = useState(0);
     const [loading, setLoading] = useState(false);
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
     useEffect(() => {
         const verifyToken = async () => {
@@ -39,7 +41,17 @@ export default function Login_p() {
         setHeight(height);
     };
 
-    const HandleLogin = async () => {
+    const handleDateChange = (event, selectedDate) => {
+        const currentDate = selectedDate || dtNasc;
+        setShowDatePicker(false);
+        setDtNasc(currentDate.toLocaleDateString("pt-BR"));
+    };
+
+    const showDatepicker = () => {
+        setShowDatePicker(true);
+    };
+
+    const handleLogin = async () => {
         setLoading(true);
         const isLoggedIn = await HandleNext(matricula, dtNasc);
         setLoading(false);
@@ -58,12 +70,11 @@ export default function Login_p() {
                 style={[styles.container, { height: height }]}
             >
                 <StatusBar backgroundColor={Global_Colors.PRIMARY_COLOR} barStyle={"light-content"} />
-                {/* Logo Container */}
                 <View style={styles.lgContainer}>
                     <Image source={require("../../../../assets/Telas/Secundarias/Login/CrownSimbol.png")} />
                     <Text style={styles.lgContainerText}>FourDevsGym</Text>
                 </View>
-                {/*  Inputs Container */}
+
                 <View style={styles.ipContainer}>
                     <TextInput
                         placeholder="Matricula"
@@ -71,14 +82,17 @@ export default function Login_p() {
                         value={matricula}
                         onChangeText={setMatricula}
                     />
-                    <TextInput
-                        placeholder="Data Nascimento"
-                        style={styles.ipInput}
-                        value={dtNasc}
-                        onChangeText={setDtNasc}
-                    />
+                    <TouchableOpacity onPress={showDatepicker} style={styles.dateInput}>
+                        <View style={styles.datePickerContainer}>
+                            <Text style={styles.iconCalendario}>📅</Text>
+                            <Text style={styles.dateText}>{dtNasc ? dtNasc : "00/00/0000"}</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    {showDatePicker && (
+                        <DateTimePicker value={new Date()} mode="date" display="default" onChange={handleDateChange} />
+                    )}
                 </View>
-                {/* View btn entrar */}
                 <View style={styles.btContainer}>
                     <TouchableOpacity style={styles.btBtn} onPress={HandleLogin} disabled={loading}>
                         {loading ? (

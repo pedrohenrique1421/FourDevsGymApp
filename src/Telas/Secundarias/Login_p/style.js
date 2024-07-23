@@ -47,6 +47,32 @@ const styles = StyleSheet.create({
         backgroundColor: Global_Colors.BW_PRIMARY_COLOR,
         marginBottom: "3%",
     },
+    // Date Picker Container
+    datePickerContainer: {
+        width: "90%",
+        alignItems: "center",
+        marginBottom: "3%",
+        flexDirection:"row",
+        alignItems:"center",
+        marginTop:10
+    },
+    dateInput: {
+        borderColor: Global_Colors.PRIMARY_COLOR,
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 5,
+        width: "90%",
+        backgroundColor: Global_Colors.BW_PRIMARY_COLOR,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    dateText: {
+        fontSize: 20,
+        color: Global_Colors.QUINTERNARY_COLOR, // Ajuste a cor conforme necessário
+    },
+    iconCalendario:{
+        marginRight:10
+    },
     // View btn entrar
     btContainer: {
         width: "90%",
@@ -74,6 +100,10 @@ const styles = StyleSheet.create({
         fontSize: 15,
         paddingLeft: 20,
     },
+    text:{
+        justifyContent:"start",
+        alignItems:"start"
+    }
 });
 
 export default styles;

@@ -1,10 +1,12 @@
-import { View, Image, TouchableOpacity, Text, Animated, TouchableWithoutFeedback } from "react-native";
+import { useState, useEffect } from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import { styles, widthSvg, heightSvg } from "./style";
 import Global_Colors from "../../Scripts/GLobal/Global_Colors";
 import Global_Vars from "../../Scripts/GLobal/Global_Var";
 import { Dark_Mode_Set } from "../../Scripts/Dark_Mode";
+import Dark_Mode_Set from "../../Scripts/Dark_Mode";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import Aulas from "../../../assets/Components/MenuLateral/Aulas.svg";
 import Avisos from "../../../assets/Components/MenuLateral/Avisos.svg";
@@ -18,21 +20,54 @@ import Treinos from "../../../assets/Components/MenuLateral/Treinos.svg";
 import Avaliacao from "../../../assets/Components/MenuLateral/Avaliacao.svg";
 import Sair from "../../../assets/Components/MenuLateral/Sair.svg";
 
-// Falta navegar com o parametro chave: key e definir o backgroundColor das outras paginas
-
 export default function Menulateral_c({ page, resetSlide }) {
     const navigation = useNavigation();
-    const [key, setKey] = useState(0);
+    const [nome, setNome] = useState("");
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Recupera o token do AsyncStorage
+                const token = await AsyncStorage.getItem("userToken");
+                const id = await AsyncStorage.getItem("userId");
+                if (!token) {
+                    console.error("Token não encontrado.");
+                    return;
+                }
+
+                // Faz a requisição à API
+                const response = await fetch("https://apigym-fourdevs.vercel.app/student/" + id, {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                // Processa a resposta da API
+                const data = await response.json();
+                if (data.success) {
+                    setNome(data.conteudoJson.nome);
+                } else {
+                    console.error("Erro ao obter dados:", data);
+                }
+            } catch (error) {
+                console.error("Erro ao buscar dados do aluno:", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const resetAndNavigate = () => {
         Dark_Mode_Set();
-        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
-        navigation.navigate(page, { chave: key }); // Passa a chave como parâmetro
+        navigation.navigate(page); // Atualiza a navegação
     };
 
     const NavegarPara = (paginaPara) => {
-        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
-        navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
+        navigation.navigate(paginaPara); // Atualiza a navegação
     };
+
     return (
         <View style={styles.Container}>
             <View>
@@ -69,11 +104,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            NavegarPara("Aulas_p");
+                            NavegarPara("Avaliacao_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "Aulas_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Avaliacao_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Avaliacao width={widthSvg} height={heightSvg} />
@@ -115,11 +150,11 @@ export default function Menulateral_c({ page, resetSlide }) {
                     <TouchableOpacity
                         onPress={() => {
                             resetSlide();
-                            NavegarPara("Suporte_p");
+                            NavegarPara("Sair_p");
                         }}
                         style={[
                             styles.Item,
-                            page === "Suporte_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
+                            page === "Sair_p" ? { backgroundColor: Global_Colors.BW_TERTIARY_COLOR } : {},
                         ]}
                     >
                         <Sair width={widthSvg} height={heightSvg} />
@@ -137,11 +172,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                 >
                     <Perfil width={widthSvg + 12} height={heightSvg + 12} />
                 </TouchableOpacity>
-                <Text style={styles.BDPText}>
-                    {Global_Vars.NOME.length > 14
-                        ? String(Global_Vars.NOME.substring(0, 14) + "...")
-                        : String(Global_Vars.NOME)}
-                </Text>
+                <Text style={styles.BDPText}>{nome}</Text>
                 {/* Elemento de desenvolvimento */}
                 <TouchableOpacity style={styles.BDPImageContainer} onPress={() => resetAndNavigate()}>
                     <Dark_Mode width={widthSvg * 0.8} height={heightSvg * 0.8} />

@@ -39,7 +39,7 @@ export default function NavBar_c({ page }) {
                 <TouchableOpacity
                     style={styles.menuBtn}
                     onPress={() => {
-                        console.log("clickado");
+                        //console.log("clickado");
                         !showMenu ? startSliding() : resetSliding();
                     }}
                 >

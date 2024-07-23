@@ -7,11 +7,13 @@ function Dark_Mode_Set() {
         Global_Colors.BW_PRIMARY_COLOR = "#f1f1f1";
         Global_Colors.BW_SECONDARY_COLOR = "#242424";
         Global_Vars.MODE = 0;
+        console.log("light");
     } else {
         // DARK
         Global_Colors.BW_PRIMARY_COLOR = "#242424";
         Global_Colors.BW_SECONDARY_COLOR = "#f1f1f1";
         Global_Vars.MODE = 1;
+        console.log("dark");
     }
 }
 
