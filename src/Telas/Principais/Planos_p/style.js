@@ -25,6 +25,48 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontStyle: "italic",
     },
+    plano:{
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
+        width:"80%",
+        flexDirection:"row",
+        flexWrap:"wrap",
+        borderRadius:7,
+        padding:20,
+        marginLeft:"10%",
+        marginTop:"5%"
+    },
+    titlePlano:{
+        width:"70%",
+        fontSize:30,
+        fontWeight:"700",
+        color:Global_Colors.BW_QUARTIARY_COLOR
+    },
+    precoPlano:{
+        fontSize:15,
+        fontWeight:"700",
+        color:Global_Colors.BW_QUARTIARY_COLOR,
+        marginTop:13,
+    },
+    descricaoPlano:{
+        fontSize:15,
+        fontWeight:"600",
+        color:Global_Colors.BW_QUARTIARY_COLOR,
+        marginTop:7,
+    },
+    bttPlano:{
+        color:Global_Colors.BW_QUARTIARY_COLOR,
+        padding:10,
+        borderWidth:1,
+        borderColor:Global_Colors.BW_QUARTIARY_COLOR,
+        borderRadius:5,
+        marginTop:20,
+        width:"100%",
+        textAlign:"center"
+    },
+    ScrollView:{
+        width:"100%",
+         marginTop:"15%"
+    }
 });
 
 export default styles;
