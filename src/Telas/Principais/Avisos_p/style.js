@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         backgroundColor:"red"
     },
     cpTitle: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: "700",
         color: Global_Colors.PRIMARY_COLOR,
     },
@@ -39,21 +39,17 @@ const styles = StyleSheet.create({
         elevation: 7,
         flexDirection:"row",
         alignItems:"center",
+        padding:20
     },
     avisosTotal:{
         marginTop:80
     },
     containIconAvisos:{
         backgroundColor:Global_Colors.PRIMARY_COLOR,
-        width:"10%",
         alignItems:"center",
         justifyContent:"center",
-        paddingBottom:"10%",
-        paddingTop:"10%",
-        borderTopLeftRadius:7,
-        borderBottomLeftRadius:7,
-        marginTop:5
-
+        borderRadius:5,
+        padding:5
     },
     textAviso:{
         marginLeft:"5%",
