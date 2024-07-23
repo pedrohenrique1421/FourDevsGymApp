@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     ItemText: {
         color: Global_Colors.BW_PRIMARY_COLOR,
-        fontSize: 20,
+        fontSize: 17,
         fontWeight: "400",
     },
     ItemImage: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         paddingRight: "6%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
     },
     BDPText: {
         fontSize: 20,

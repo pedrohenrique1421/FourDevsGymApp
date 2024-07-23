@@ -115,7 +115,7 @@ export default function Menulateral_c({ page, resetSlide }) {
                     </TouchableOpacity>
                 </View>
                 {/* Espaco */}
-                <View style={{ height: 24 }} />
+               
                 <View>
                     {/* Item */}
                     <TouchableOpacity
@@ -169,21 +169,15 @@ export default function Menulateral_c({ page, resetSlide }) {
                         NavegarPara("Perfil_p");
                     }}
                 >
+                    <View style={styles.BarraDePerfil}>
                     <Perfil width={widthSvg + 12} height={heightSvg + 12} />
+                    <Text style={styles.BDPText}>{nome}</Text>
+                    </View>
                 </TouchableOpacity>
-                <Text style={styles.BDPText}>{nome}</Text>
+
                 {/* Elemento de desenvolvimento */}
                 <TouchableOpacity style={styles.BDPImageContainer} onPress={() => resetAndNavigate()}>
                     <Dark_Mode width={widthSvg * 0.8} height={heightSvg * 0.8} />
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.BDPImageContainer}
-                    onPress={() => {
-                        resetSlide();
-                        NavegarPara("Config_p");
-                    }}
-                >
-                    <Config width={widthSvg * 0.8} height={heightSvg * 0.8} />
                 </TouchableOpacity>
             </View>
         </View>

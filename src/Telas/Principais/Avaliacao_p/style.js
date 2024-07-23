@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         marginTop:100,
     },
     accordionCard:{
-        width:"80%"
+        width:"90%",
     },
     accordionTitle:{
         backgroundColor:Global_Colors.PRIMARY_COLOR,
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         padding:5,
         borderRadius:3,
         marginTop:10,
+        paddingLeft:"3%"
     },
     ScrollView:{
         width:"100%"
@@ -64,13 +65,14 @@ const styles = StyleSheet.create({
         borderTopLeftRadius:0,
         borderTopRightRadius:0,
         borderTopWidth:0,
-        marginBottom:10
+        marginBottom:"7%"
     },
     dadoNegrito:{
         fontWeight:"800"
     },
     dado:{
         color:Global_Colors.TERTIARY_COLOR,
+        margin:5
     }
 });
 

@@ -36,7 +36,7 @@ export async function HandleNext(matricula, dtNasc) {
                 console.log(userId)
                 if (token && userId) {
                     //precisa chamar a variavel "token", estou esperando o back resolver conflito de acesso do token
-                    await AsyncStorage.setItem('userToken', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hZG0iOjEsImVtYWlsIjoiZG9ub0BnbWFpbC5jb20iLCJub21lIjoiV2lsa2VuaW8iLCJjYXJnbyI6ImRvbm8iLCJpZF9hY2FkZW1pYSI6MSwiZGF0YV9jcmlhY2FvIjoiMDgvMDcvMjAyNCAwMDowMDowMCIsImRhdGFfYXR1YWxpemFjYW8iOiIwOC8wNy8yMDI0IDE0OjQyOjI0Iiwibm9tZV9hY2FkZW1pYSI6IlNvYXJlcyBGSVQiLCJpYXQiOjE3MjE3NTg0NjksImV4cCI6MTcyMjM2MzI2OX0.m7IQRmAocHwvaWb56FhOZCepj3w-GHY9_Gs2wsXk1Qc");
+                    await AsyncStorage.setItem('userToken', token);
                     await AsyncStorage.setItem('userId', userId.toString());
                     console.log("Login realizado com sucesso", data);
                     return true;

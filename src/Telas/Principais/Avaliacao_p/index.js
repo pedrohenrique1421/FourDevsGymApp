@@ -114,32 +114,32 @@ const Aulas_p = () => {
                                 {/* Accordion Content */}
                                 <Collapsible collapsed={expandedId !== evaluation.id_avaliacao}>
                                     <View style={styles.accordionContent}>
-                                        <Text style={styles.titleTexto}>Análise</Text>
+                                        <Text style={styles.titleTexto}>🎯 Análise</Text>
                                         <Text style={styles.dado}>Objetivo da avaliação: <Text style={styles.dadoNegrito}>{evaluation.obj}</Text></Text>
-                                        <Text style={styles.titleTexto}>Composição Corporal</Text>
-                                        <Text style={styles.dado}>Peso: <Text style={styles.dadoNegrito}>{evaluation.peso}</Text></Text>
-                                        <Text style={styles.dado}>Altura: <Text style={styles.dadoNegrito}>{evaluation.altura}</Text></Text>
-                                        <Text style={styles.titleTexto}>Métricas</Text>
-                                        <Text style={styles.dado}>Braço Direito Contraído: <Text style={styles.dadoNegrito}>{evaluation.braco_direito_contraido}</Text></Text>
-                                        <Text style={styles.dado}>Braço Direito Relaxado: <Text style={styles.dadoNegrito}>{evaluation.braco_direito_relaxado}</Text></Text>
-                                        <Text style={styles.dado}>Braço Esquerdo Contraído: <Text style={styles.dadoNegrito}>{evaluation.braco_esquerdo_contraido}</Text></Text>
-                                        <Text style={styles.dado}>Braço Esquerdo Relaxado: <Text style={styles.dadoNegrito}>{evaluation.braco_esquerdo_relaxado}</Text></Text>
-                                        <Text style={styles.dado}>Tórax: <Text style={styles.dadoNegrito}>{evaluation.torax}</Text></Text>
-                                        <Text style={styles.dado}>Cintura: <Text style={styles.dadoNegrito}>{evaluation.cintura}</Text></Text>
-                                        <Text style={styles.dado}>Abdômen: <Text style={styles.dadoNegrito}>{evaluation.abdomen}</Text></Text>
-                                        <Text style={styles.dado}>Quadril: <Text style={styles.dadoNegrito}>{evaluation.quadril}</Text></Text>
-                                        <Text style={styles.dado}>Coxa Esquerda: <Text style={styles.dadoNegrito}>{evaluation.coxa_esquerda}</Text></Text>
-                                        <Text style={styles.dado}>Coxa Direita: <Text style={styles.dadoNegrito}>{evaluation.coxa_direita}</Text></Text>
-                                        <Text style={styles.dado}>Antebraço Direito: <Text style={styles.dadoNegrito}>{evaluation.antebraco_direito}</Text></Text>
-                                        <Text style={styles.dado}>Panturrilha Esquerda: <Text style={styles.dadoNegrito}>{evaluation.panturrilha_esquerda}</Text></Text>
-                                        <Text style={styles.dado}>Panturrilha Direita: <Text style={styles.dadoNegrito}>{evaluation.panturrilha_direita}</Text></Text>
-                                        <Text style={styles.dado}>Antebraço Esquerdo: <Text style={styles.dadoNegrito}>{evaluation.antebraco_esquerdo}</Text></Text>
-                                        <Text style={styles.titleTexto}>Bioimpedância</Text>
-                                        <Text style={styles.dado}>Água Corporal: <Text style={styles.dadoNegrito}>{evaluation.agua_corporal}</Text></Text>
-                                        <Text style={styles.dado}>Relação cintura quadril: <Text style={styles.dadoNegrito}>{evaluation.rcq}</Text></Text>
-                                        <Text style={styles.dado}>Taxa metabolismo Basal: <Text style={styles.dadoNegrito}>{evaluation.tmb}</Text></Text>
+                                        <Text style={styles.titleTexto}>📊  Composição Corporal</Text>
+                                        <Text style={styles.dado}>Peso: <Text style={styles.dadoNegrito}>{evaluation.peso} Kg</Text></Text>
+                                        <Text style={styles.dado}>Altura: <Text style={styles.dadoNegrito}>{evaluation.altura} Cm</Text></Text>
+                                        <Text style={styles.titleTexto}>📏 Métricas</Text>
+                                        <Text style={styles.dado}>Braço Direito Contraído: <Text style={styles.dadoNegrito}>{evaluation.braco_direito_contraido} Cm</Text></Text>
+                                        <Text style={styles.dado}>Braço Direito Relaxado: <Text style={styles.dadoNegrito}>{evaluation.braco_direito_relaxado} Cm</Text></Text>
+                                        <Text style={styles.dado}>Braço Esquerdo Contraído: <Text style={styles.dadoNegrito}>{evaluation.braco_esquerdo_contraido} Cm</Text></Text>
+                                        <Text style={styles.dado}>Braço Esquerdo Relaxado: <Text style={styles.dadoNegrito}>{evaluation.braco_esquerdo_relaxado} Cm</Text></Text>
+                                        <Text style={styles.dado}>Tórax: <Text style={styles.dadoNegrito}>{evaluation.torax} Cm</Text></Text>
+                                        <Text style={styles.dado}>Cintura: <Text style={styles.dadoNegrito}>{evaluation.cintura} Cm</Text></Text>
+                                        <Text style={styles.dado}>Abdômen: <Text style={styles.dadoNegrito}>{evaluation.abdomen} Cm</Text></Text>
+                                        <Text style={styles.dado}>Quadril: <Text style={styles.dadoNegrito}>{evaluation.quadril} Cm</Text></Text>
+                                        <Text style={styles.dado}>Coxa Esquerda: <Text style={styles.dadoNegrito}>{evaluation.coxa_esquerda} Cm</Text></Text>
+                                        <Text style={styles.dado}>Coxa Direita: <Text style={styles.dadoNegrito}>{evaluation.coxa_direita} Cm</Text></Text>
+                                        <Text style={styles.dado}>Antebraço Direito: <Text style={styles.dadoNegrito}>{evaluation.antebraco_direito} Cm</Text></Text>
+                                        <Text style={styles.dado}>Panturrilha Esquerda: <Text style={styles.dadoNegrito}>{evaluation.panturrilha_esquerda} Cm</Text></Text>
+                                        <Text style={styles.dado}>Panturrilha Direita: <Text style={styles.dadoNegrito}>{evaluation.panturrilha_direita} Cm</Text></Text>
+                                        <Text style={styles.dado}>Antebraço Esquerdo: <Text style={styles.dadoNegrito}>{evaluation.antebraco_esquerdo} Cm</Text></Text>
+                                        <Text style={styles.titleTexto}>🔍 Bioimpedância</Text>
+                                        <Text style={styles.dado}>Água Corporal: <Text style={styles.dadoNegrito}>{evaluation.agua_corporal} %</Text></Text>
+                                        <Text style={styles.dado}>Relação cintura quadril: <Text style={styles.dadoNegrito}>{evaluation.rcq} WHR</Text></Text>
+                                        <Text style={styles.dado}>Taxa metabolismo Basal: <Text style={styles.dadoNegrito}>{evaluation.tmb} kcal/dia</Text></Text>
                                         <Text style={styles.dado}>Gordura Visceral: <Text style={styles.dadoNegrito}>{evaluation.gordura_visceral}</Text></Text>
-                                        <Text style={styles.dado}>Massa Óssea: <Text style={styles.dadoNegrito}>{evaluation.massa_ossea}</Text></Text>
+                                        <Text style={styles.dado}>Massa Óssea: <Text style={styles.dadoNegrito}>{evaluation.massa_ossea} Kg</Text></Text>
                                         <Text style={styles.dado}>Idade Metabólica: <Text style={styles.dadoNegrito}>{evaluation.idademeta}</Text></Text>
                                     </View>
 

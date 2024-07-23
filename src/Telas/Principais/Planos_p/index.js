@@ -52,25 +52,27 @@ export default function Planos_p() {
     }, []);
 
     const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        return date.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+        const [day, month, year] = dateString.split(' ')[0].split('/'); // Extrai partes da data
+        return `${year}-${month}-${day}`; // Formata para YYYY-MM-DD
     };
 
     const changePlan = async (planId) => {
         try {
             const tokenAdm = await AsyncStorage.getItem('userToken');
-            const { id_aluno, dtNascimento } = studentDetails;
+            const { nascimento } = studentDetails;
+            const formattedDate = formatDate(nascimento); // Formata a data
 
-            const response = await fetch(`https://apigym-fourdevs.vercel.app/student/${id_aluno}`, {
+            console.log(studentDetails)
+
+            const response = await fetch(`https://apigym-fourdevs.vercel.app/student/${studentDetails.id_aluno}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${tokenAdm}`
                 },
                 body: JSON.stringify({
-                    ...studentDetails,
                     id_plano: planId,
-                    nascimentooo: formatDate(dtNascimento) // Formatar a data para YYYY-MM-DD
+                    nascimento: formattedDate // Usa a data formatada
                 })
             });
 
@@ -78,7 +80,7 @@ export default function Planos_p() {
             if (data.success) {
                 setStudentDetails({ ...studentDetails, id_plano: planId });
             } else {
-                console.error('Errro ao mudar de plano:', data);
+                console.error('Erro ao mudar de plano:', data);
             }
         } catch (error) {
             console.error('Erro ao mudar de plano:', error);

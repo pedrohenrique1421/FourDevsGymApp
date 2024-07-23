@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginBottom:20,
         fontSize:20,
         color:Global_Colors.BW_SECONDARY_COLOR,
-        fontWeight:"900",
+        fontWeight:"600",
         marginLeft:"7%"
     },
     dia:{
@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         marginTop:5,
         marginLeft:"7.5%",
         marginBottom:30,
+        backgroundColor:Global_Colors.senario_COLOR
     },
     exercicio:{
         padding:5,
@@ -69,7 +70,6 @@ const styles = StyleSheet.create({
     nomeExercicio:{},
     series:{},
     division:{},
-    rep:{}
 });
 
 export default styles;

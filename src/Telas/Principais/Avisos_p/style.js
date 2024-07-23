@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     },
     containAviso:{
         marginTop:15,
-        padding:25,
         borderRadius:5,
         width:"90%",
         marginLeft:"5%",
@@ -37,10 +36,28 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.05,
         shadowRadius: 3.84,
-        elevation: 5,
+        elevation: 7,
+        flexDirection:"row",
+        alignItems:"center",
     },
     avisosTotal:{
         marginTop:80
+    },
+    containIconAvisos:{
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
+        width:"10%",
+        alignItems:"center",
+        justifyContent:"center",
+        paddingBottom:"10%",
+        paddingTop:"10%",
+        borderTopLeftRadius:7,
+        borderBottomLeftRadius:7,
+        marginTop:5
+
+    },
+    textAviso:{
+        marginLeft:"5%",
+        width:"80%"
     }
 });
 

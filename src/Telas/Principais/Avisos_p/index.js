@@ -5,18 +5,19 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import styles from "./style";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import NavBar_c from "../../../Components/NavBar";
+import Avisos from "../../../../assets/Components/MenuLateral/Avisos.svg";
 
 export default function Avisos_p({ chave }) {
     const [avisos, setAvisos] = useState([]);
     const [loading, setLoading] = useState(true); // Estado para o carregamento
     const navigation = useNavigation();
 
-   // Pra navegação
-   const [key, setKey] = useState(0);
-   const NavegarPara = (paginaPara) => {
-       setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
-       navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
-   };
+    // Pra navegação
+    const [key, setKey] = useState(0);
+    const NavegarPara = (paginaPara) => {
+        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+        navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
+    };
 
     useEffect(() => {
         const fetchAvisos = async () => {
@@ -38,7 +39,7 @@ export default function Avisos_p({ chave }) {
                 const data = await response.json();
                 if (data.success) {
                     setAvisos(data.conteudoJson);
-                }else if (data.conteudoJson.message === "Não autorizado.") {
+                } else if (data.conteudoJson.message === "Não autorizado.") {
                     NavegarPara("Sair_p")
                 }
             } catch (error) {
@@ -74,10 +75,16 @@ export default function Avisos_p({ chave }) {
                     <ScrollView style={styles.scrollView}>
                         {avisos.map((aviso) => (
                             <View key={aviso.id_aviso} style={styles.containAviso}>
-                                <Text style={styles.cpTitle}>{aviso.titulo}</Text>
-                                <Text style={[styles.cpSubTitle, { color:Global_Colors.TERTIARY_COLOR }]}>
-                                    {aviso.descricao}
-                                </Text>
+                                <View style={styles.containIconAvisos}>
+                                    <Avisos style={styles.avisosIcon}></Avisos>
+                                </View>
+
+                                <View style={styles.textAviso}>
+                                    <Text style={styles.cpTitle}>{aviso.titulo}</Text>
+                                    <Text style={[styles.cpSubTitle, { color: Global_Colors.TERTIARY_COLOR }]}>
+                                        {aviso.descricao}
+                                    </Text>
+                                </View>
                             </View>
                         ))}
                     </ScrollView>
