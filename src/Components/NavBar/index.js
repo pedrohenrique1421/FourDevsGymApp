@@ -15,7 +15,7 @@ export default function NavBar_c({ page }) {
     const startSliding = () => {
         Animated.timing(slideAnim, {
             toValue: 0,
-            duration: 1500, // A duração da animação
+            duration: 900, // A duração da animação
             useNativeDriver: true, // Usa a API de driver nativo para melhor desempenho
         }).start();
         setShowMenu(true);
@@ -25,7 +25,7 @@ export default function NavBar_c({ page }) {
     const resetSliding = () => {
         Animated.timing(slideAnim, {
             toValue: width * -1, // O componente deslizará para fora da tela
-            duration: 1500, // A duração da animação
+            duration: 900, // A duração da animação
             useNativeDriver: true, // Usa a API de driver nativo para melhor desempenho
         }).start();
         setShowMenu(false);
