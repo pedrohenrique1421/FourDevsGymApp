@@ -1,5 +1,6 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, CardStyleInterpolators } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
+import { Animated, Easing } from "react-native";
 //import de paginas
 import Cadastro_p from "./src/Telas/Secundarias/Cadastro_p";
 import Login_p from "./src/Telas/Secundarias/Login_p";
@@ -17,15 +18,24 @@ import Sair_p from "./src/Telas/Secundarias/Sair_p";
 const Stack = createStackNavigator();
 
 const config = {
-    animation: "spring",
+    animation: "timing",
     config: {
-        stiffness: 450,
-        damping: 500,
-        mass: 15,
-        overshootClamping: false,
-        restDisplacementThreshold: 0.01,
-        restSpeedThreshold: 0.01,
+        duration: 500,
+        easing: Easing.inOut(Easing.ease),
     },
+};
+
+const forHorizontalSlide = ({ current, layouts }) => {
+    const opacity = current.progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [0, 1],
+    });
+
+    return {
+        cardStyle: {
+            opacity: opacity,
+        },
+    };
 };
 
 export default function App() {
@@ -35,6 +45,7 @@ export default function App() {
                 initialRouteName="Login_p"
                 screenOptions={{
                     headerShown: false,
+                    cardStyleInterpolator: forHorizontalSlide,
                     transitionSpec: {
                         open: config,
                         close: config,
