@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Text, SafeAreaView, View, StatusBar, Image, ScrollView } from 'react-native';
+import { Text, SafeAreaView, View, StatusBar, Image, ScrollView, ActivityIndicator } from 'react-native';
 import styles from './style';
 import Global_Colors from '../../../Scripts/GLobal/Global_Colors';
 import NavBar_c from '../../../Components/NavBar';
@@ -10,6 +10,14 @@ export default function Treino_p() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+
+       // Pra navegação
+       const [key, setKey] = useState(0);
+       const NavegarPara = (paginaPara) => {
+           setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+           navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
+       };
+       
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -21,7 +29,6 @@ export default function Treino_p() {
                     setLoading(false);
                     return;
                 }
-
 
                 // Requisição para a API para obter os dados do aluno
                 const studentResponse = await fetch(`https://apigym-fourdevs.vercel.app/student/${id}`, {
@@ -47,14 +54,17 @@ export default function Treino_p() {
                         'Content-Type': 'application/json'
                     }
                 });
-
+             
                 if (!treinoResponse.ok) {
                     throw new Error('Erro ao obter dados do treino.');
                 }
-
+             
                 const treinoData = await treinoResponse.json();
                 setTreinoData(treinoData.conteudoJson);
-
+                console.log(treinoData)
+                if (treinoData.conteudoJson.message === "Não autorizado.") {
+                    NavegarPara("Suporte_p")
+                }
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -70,7 +80,8 @@ export default function Treino_p() {
             <SafeAreaView style={styles.container}>
                 <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
                 <NavBar_c page={"Treinos_p"} />
-                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
+                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR, justifyContent: 'center', alignItems: 'center', height: '100%' }]}>
+                    <ActivityIndicator size="large" color={Global_Colors.PRIMARY_COLOR} />
                     <Text style={styles.loading}>Carregando...</Text>
                 </View>
             </SafeAreaView>
@@ -95,25 +106,25 @@ export default function Treino_p() {
             <NavBar_c page={"Treinos_p"} />
             <View style={styles.cpContainer}>
                 <ScrollView width={"100%"}>
-                <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
-                {treinoData?.dias.map(dia => (
-                    <View key={dia.id_dia} style={styles.dia}>
-                        <Text style={styles.nomeDia}>Dia {dia.id_dia}</Text>
-                        {dia.exercicios.map(exercicio => (
-                            <View key={exercicio.id_exercicio} style={styles.exercicio}>
-                                <Image
-                                    source={{ uri: `${exercicio.gif_url}` }} // Ajuste a URL conforme necessário
-                                    style={styles.imageExercicio}
-                                />
-                                <Text style={styles.nomeExercicio}>Exercício {exercicio.id_exercicio}</Text>
-                                <Text style={styles.series}>{exercicio.series}</Text>
-                                <Text style={styles.division}>X</Text>
-                                <Text style={styles.rep}>{exercicio.repeticoes}</Text>
-                            </View>
-                        ))}
-                    </View>
-                ))}
-</ScrollView>
+                    <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
+                    {treinoData?.dias.map(dia => (
+                        <View key={dia.id_dia} style={styles.dia}>
+                            <Text style={styles.nomeDia}>Dia {dia.id_dia}</Text>
+                            {dia.exercicios.map(exercicio => (
+                                <View key={exercicio.id_exercicio} style={styles.exercicio}>
+                                    <Image
+                                        source={{ uri: `${exercicio.gif_url}` }} // Ajuste a URL conforme necessário
+                                        style={styles.imageExercicio}
+                                    />
+                                    <Text style={styles.nomeExercicio}>Exercício {exercicio.id_exercicio}</Text>
+                                    <Text style={styles.series}>{exercicio.series}</Text>
+                                    <Text style={styles.division}>X</Text>
+                                    <Text style={styles.rep}>{exercicio.repeticoes}</Text>
+                                </View>
+                            ))}
+                        </View>
+                    ))}
+                </ScrollView>
             </View>
         </SafeAreaView>
     );

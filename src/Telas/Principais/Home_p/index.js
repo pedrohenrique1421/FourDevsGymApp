@@ -1,8 +1,7 @@
-import { Text, SafeAreaView, View, StatusBar, TouchableOpacity } from "react-native";
+import { Text, SafeAreaView, View, StatusBar, TouchableOpacity, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./style";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
-
 import NavBar_c from "../../../Components/NavBar";
 import Alerta from "../../../Components/ALerta";
 import { useState, useEffect } from "react";
@@ -17,13 +16,14 @@ export default function Home_p({ chave }) {
     const [userToken, setUserToken] = useState(null);
     const [userName, setUserName] = useState('Loading...');
     const [avisos, setAvisos] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const HandleOnEnd = () => {
         setShowAlerta(!showAlerta);
         console.log("alerta desfeito");
     };
 
-    //pra navegação
+    // Pra navegação
     const [key, setKey] = useState(0);
     const NavegarPara = (paginaPara) => {
         setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
@@ -53,9 +53,11 @@ export default function Home_p({ chave }) {
                         },
                     });
                     const userData = await userResponse.json();
-                    console.log(userData)
+                    console.log(userData);
                     if (userData.success) {
                         setUserName(userData.conteudoJson.nome);
+                    } else if (userData.conteudoJson.message === "Não autorizado.") {
+                        console.log("nao");
                     }
                 }
 
@@ -70,16 +72,32 @@ export default function Home_p({ chave }) {
                     const noticesData = await noticesResponse.json();
                     if (noticesData.success) {
                         setAvisos(noticesData.conteudoJson);
+                    } else if (noticesData.conteudoJson.message === "Não autorizado.") {
+                        NavegarPara("Suporte_p")
                     }
                 }
 
             } catch (error) {
                 console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false);
             }
         };
 
         fetchData();
     }, [userId, userToken]);
+
+    if (loading) {
+        return (
+            <SafeAreaView style={[styles.container, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
+                <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
+                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR, justifyContent: 'center', alignItems: 'center', height: '100%' }]}>
+                    <ActivityIndicator size="large" color={Global_Colors.PRIMARY_COLOR} />
+                    <Text style={styles.loading}>Carregando...</Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
 
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
@@ -90,7 +108,6 @@ export default function Home_p({ chave }) {
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Bem vindo!</Text>
 
-
                 <View style={styles.containUser}>
                     <Home width={20} height={20} style={styles.iconUser} />
                     <Text style={styles.cpTitle}>{userName}</Text>
@@ -99,27 +116,22 @@ export default function Home_p({ chave }) {
                 <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Top 3 Avisos</Text>
 
                 <View style={styles.Avisos}>
-                    {avisos.slice(0, 3).map((aviso) => (
-                        <View style={styles.containAvisos}>
+                    {avisos.slice(0, 3).map((aviso, index) => (
+                        <View key={index} style={styles.containAvisos}>
                             <Avisos width={20} height={20} style={styles.iconUser} />
                             <Text style={styles.cpTitleAvisos}>{aviso.titulo}</Text>
                         </View>
                     ))}
 
                     <TouchableOpacity
-                        onPress={() => {
-
-                            NavegarPara("Avisos_p");
-                        }}
+                        onPress={() => NavegarPara("Avisos_p")}
                     >
                         <View style={styles.buttonMaisAvisos}>
                             <Text style={styles.textButtonAvisos}>Todos Avisos +</Text>
-
                         </View>
                     </TouchableOpacity>
 
                     {/* Botão para limpar informações */}
-
                     <TouchableOpacity onPress={() => setShowAlerta(!showAlerta)}>
                         <Text>Exibir alerta</Text>
                     </TouchableOpacity>

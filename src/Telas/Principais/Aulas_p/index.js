@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SafeAreaView, View, StatusBar, TouchableOpacity } from 'react-native';
+import { Text, SafeAreaView, View, StatusBar, TouchableOpacity, ActivityIndicator } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './style';
 import Global_Colors from '../../../Scripts/GLobal/Global_Colors';
-
 import NavBar_c from '../../../Components/NavBar';
 
 // Function to fetch data
@@ -19,6 +18,9 @@ const fetchEvaluations = async (token) => {
             },
         });
         const data = await response.json();
+        if (data.conteudoJson.message === "Não autorizado.") {
+            NavegarPara("Suporte_p")
+        }
         return data;
     } catch (error) {
         console.error("Error fetching evaluations:", error);
@@ -31,6 +33,14 @@ const Aulas_p = () => {
     const [evaluations, setEvaluations] = useState([]);
     const [userId, setUserId] = useState(null);
     const [userToken, setUserToken] = useState(null);
+    const [loading, setLoading] = useState(true); // State for loading
+
+   // Pra navegação
+   const [key, setKey] = useState(0);
+   const NavegarPara = (paginaPara) => {
+       setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+       navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
+   };
 
     useEffect(() => {
         const getUserData = async () => {
@@ -54,13 +64,30 @@ const Aulas_p = () => {
             }
         };
 
-        getUserData();
-        getEvaluations();
+        const fetchData = async () => {
+            await getUserData();
+            await getEvaluations();
+            setLoading(false); // Set loading to false after fetching data
+        };
+
+        fetchData();
     }, [userId, userToken]);
 
     const toggleExpand = (id) => {
         setExpandedId(expandedId === id ? null : id);
     };
+
+    if (loading) {
+        return (
+            <SafeAreaView style={[styles.container, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
+                <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
+                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR, justifyContent: 'center', alignItems: 'center', height: '100%' }]}>
+                    <ActivityIndicator size="large" color={Global_Colors.PRIMARY_COLOR} />
+                    <Text style={styles.loading}>Carregando...</Text>
+                </View>
+            </SafeAreaView>
+        );
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -82,6 +109,7 @@ const Aulas_p = () => {
                             {/* Accordion Content */}
                             <Collapsible collapsed={expandedId !== evaluation.id_avaliacao}>
                                 <View style={styles.accordionContent}>
+                                    <Text>Objetivo da avaliação: {evaluation.obj}</Text>
                                     <Text>Braco Direito Contraído: {evaluation.braco_direito_contraido}</Text>
                                     <Text>Braco Direito Relaxado: {evaluation.braco_direito_relaxado}</Text>
                                     <Text>Braco Esquerdo Contraído: {evaluation.braco_esquerdo_contraido}</Text>
@@ -101,6 +129,8 @@ const Aulas_p = () => {
                                     <Text>Panturrilha Esquerda: {evaluation.panturrilha_esquerda}</Text>
                                     <Text>Panturrilha Direita: {evaluation.panturrilha_direita}</Text>
                                     <Text>Antebraço Esquerdo: {evaluation.antebraco_esquerdo}</Text>
+                                    <Text>Relação cintura quadril: {evaluation.rcq}</Text>
+                                    <Text>Taxa metabolismo Basal: {evaluation.tmb}</Text>
                                 </View>
                             </Collapsible>
                         </View>
