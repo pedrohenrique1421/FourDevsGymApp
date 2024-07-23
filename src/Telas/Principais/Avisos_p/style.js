@@ -17,17 +17,17 @@ const styles = StyleSheet.create({
         backgroundColor:"red"
     },
     cpTitle: {
-        fontSize: 24,
+        fontSize: 22,
         fontWeight: "700",
         color: Global_Colors.PRIMARY_COLOR,
     },
     cpSubTitle: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "600",
         fontStyle: "italic",
     },
     containAviso:{
-        marginTop:20,
+        marginTop:15,
         padding:25,
         borderRadius:5,
         width:"90%",

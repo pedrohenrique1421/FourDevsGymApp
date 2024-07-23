@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Text, SafeAreaView, View, StatusBar, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { Text, SafeAreaView, View, StatusBar, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
 import Collapsible from 'react-native-collapsible';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './style';
 import Global_Colors from '../../../Scripts/GLobal/Global_Colors';
 import NavBar_c from '../../../Components/NavBar';
-
 // Function to fetch data
 const fetchEvaluations = async (token) => {
     try {
@@ -35,12 +34,12 @@ const Aulas_p = () => {
     const [userToken, setUserToken] = useState(null);
     const [loading, setLoading] = useState(true); // State for loading
 
-   // Pra navegação
-   const [key, setKey] = useState(0);
-   const NavegarPara = (paginaPara) => {
-       setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
-       navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
-   };
+    // Pra navegação
+    const [key, setKey] = useState(0);
+    const NavegarPara = (paginaPara) => {
+        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+        navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
+    };
 
     useEffect(() => {
         const getUserData = async () => {
@@ -88,55 +87,68 @@ const Aulas_p = () => {
             </SafeAreaView>
         );
     }
+    const formatDate = (datetime) => {
+        const match = datetime.match(/^(\d{2}\/\d{2}\/\d{4})/);
+        return match ? match[1] : datetime;
+    };
 
     return (
+
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
             {/* NavBar */}
             <NavBar_c page={"Aulas_p"} />
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
-                <View style={styles.accordionTotal}>
-                    <Text style={styles.title}>Avaliações</Text>
-                    {evaluations.map((evaluation) => (
-                        <View key={evaluation.id_avaliacao} style={styles.accordionCard}>
-                            <TouchableOpacity 
-                                onPress={() => toggleExpand(evaluation.id_avaliacao)} 
-                                style={styles.accordionHeader}
-                            >
-                                <Text style={styles.accordionTitle}>Avaliação {evaluation.data_criacao}</Text>
-                            </TouchableOpacity>
+                <ScrollView style={styles.ScrollView}>
+                    <View style={styles.accordionTotal}>
+                        <Text style={styles.title}>Avaliações</Text>
+                        {evaluations.map((evaluation) => (
+                            <View key={evaluation.id_avaliacao} style={styles.accordionCard}>
+                                <TouchableOpacity
+                                    onPress={() => toggleExpand(evaluation.id_avaliacao)}
+                                    style={styles.accordionHeader}
+                                >
+                                    <Text style={styles.accordionTitle}>Avaliação {formatDate(evaluation.data_criacao)}</Text>
+                                </TouchableOpacity>
 
-                            {/* Accordion Content */}
-                            <Collapsible collapsed={expandedId !== evaluation.id_avaliacao}>
-                                <View style={styles.accordionContent}>
-                                    <Text>Objetivo da avaliação: {evaluation.obj}</Text>
-                                    <Text>Braco Direito Contraído: {evaluation.braco_direito_contraido}</Text>
-                                    <Text>Braco Direito Relaxado: {evaluation.braco_direito_relaxado}</Text>
-                                    <Text>Braco Esquerdo Contraído: {evaluation.braco_esquerdo_contraido}</Text>
-                                    <Text>Braco Esquerdo Relaxado: {evaluation.braco_esquerdo_relaxado}</Text>
-                                    <Text>Água Corporal: {evaluation.agua_corporal}</Text>
-                                    <Text>Tórax: {evaluation.torax}</Text>
-                                    <Text>Altura: {evaluation.altura}</Text>
-                                    <Text>Peso: {evaluation.peso}</Text>
-                                    <Text>Gordura Visceral: {evaluation.gordura_visceral}</Text>
-                                    <Text>Massa Óssea: {evaluation.massa_ossea}</Text>
-                                    <Text>Cintura: {evaluation.cintura}</Text>
-                                    <Text>Abdômen: {evaluation.abdomen}</Text>
-                                    <Text>Quadril: {evaluation.quadril}</Text>
-                                    <Text>Coxa Esquerda: {evaluation.coxa_esquerda}</Text>
-                                    <Text>Coxa Direita: {evaluation.coxa_direita}</Text>
-                                    <Text>Antebraço Direito: {evaluation.antebraco_direito}</Text>
-                                    <Text>Panturrilha Esquerda: {evaluation.panturrilha_esquerda}</Text>
-                                    <Text>Panturrilha Direita: {evaluation.panturrilha_direita}</Text>
-                                    <Text>Antebraço Esquerdo: {evaluation.antebraco_esquerdo}</Text>
-                                    <Text>Relação cintura quadril: {evaluation.rcq}</Text>
-                                    <Text>Taxa metabolismo Basal: {evaluation.tmb}</Text>
-                                </View>
-                            </Collapsible>
-                        </View>
-                    ))}
-                </View>
-                {/* Add more Accordion items here if needed */}
+                                {/* Accordion Content */}
+                                <Collapsible collapsed={expandedId !== evaluation.id_avaliacao}>
+                                    <View style={styles.accordionContent}>
+                                        <Text style={styles.titleTexto}>Análise</Text>
+                                        <Text style={styles.dado}>Objetivo da avaliação: <Text style={styles.dadoNegrito}>{evaluation.obj}</Text></Text>
+                                        <Text style={styles.titleTexto}>Composição Corporal</Text>
+                                        <Text style={styles.dado}>Peso: <Text style={styles.dadoNegrito}>{evaluation.peso}</Text></Text>
+                                        <Text style={styles.dado}>Altura: <Text style={styles.dadoNegrito}>{evaluation.altura}</Text></Text>
+                                        <Text style={styles.titleTexto}>Métricas</Text>
+                                        <Text style={styles.dado}>Braço Direito Contraído: <Text style={styles.dadoNegrito}>{evaluation.braco_direito_contraido}</Text></Text>
+                                        <Text style={styles.dado}>Braço Direito Relaxado: <Text style={styles.dadoNegrito}>{evaluation.braco_direito_relaxado}</Text></Text>
+                                        <Text style={styles.dado}>Braço Esquerdo Contraído: <Text style={styles.dadoNegrito}>{evaluation.braco_esquerdo_contraido}</Text></Text>
+                                        <Text style={styles.dado}>Braço Esquerdo Relaxado: <Text style={styles.dadoNegrito}>{evaluation.braco_esquerdo_relaxado}</Text></Text>
+                                        <Text style={styles.dado}>Tórax: <Text style={styles.dadoNegrito}>{evaluation.torax}</Text></Text>
+                                        <Text style={styles.dado}>Cintura: <Text style={styles.dadoNegrito}>{evaluation.cintura}</Text></Text>
+                                        <Text style={styles.dado}>Abdômen: <Text style={styles.dadoNegrito}>{evaluation.abdomen}</Text></Text>
+                                        <Text style={styles.dado}>Quadril: <Text style={styles.dadoNegrito}>{evaluation.quadril}</Text></Text>
+                                        <Text style={styles.dado}>Coxa Esquerda: <Text style={styles.dadoNegrito}>{evaluation.coxa_esquerda}</Text></Text>
+                                        <Text style={styles.dado}>Coxa Direita: <Text style={styles.dadoNegrito}>{evaluation.coxa_direita}</Text></Text>
+                                        <Text style={styles.dado}>Antebraço Direito: <Text style={styles.dadoNegrito}>{evaluation.antebraco_direito}</Text></Text>
+                                        <Text style={styles.dado}>Panturrilha Esquerda: <Text style={styles.dadoNegrito}>{evaluation.panturrilha_esquerda}</Text></Text>
+                                        <Text style={styles.dado}>Panturrilha Direita: <Text style={styles.dadoNegrito}>{evaluation.panturrilha_direita}</Text></Text>
+                                        <Text style={styles.dado}>Antebraço Esquerdo: <Text style={styles.dadoNegrito}>{evaluation.antebraco_esquerdo}</Text></Text>
+                                        <Text style={styles.titleTexto}>Bioimpedância</Text>
+                                        <Text style={styles.dado}>Água Corporal: <Text style={styles.dadoNegrito}>{evaluation.agua_corporal}</Text></Text>
+                                        <Text style={styles.dado}>Relação cintura quadril: <Text style={styles.dadoNegrito}>{evaluation.rcq}</Text></Text>
+                                        <Text style={styles.dado}>Taxa metabolismo Basal: <Text style={styles.dadoNegrito}>{evaluation.tmb}</Text></Text>
+                                        <Text style={styles.dado}>Gordura Visceral: <Text style={styles.dadoNegrito}>{evaluation.gordura_visceral}</Text></Text>
+                                        <Text style={styles.dado}>Massa Óssea: <Text style={styles.dadoNegrito}>{evaluation.massa_ossea}</Text></Text>
+                                        <Text style={styles.dado}>Idade Metabólica: <Text style={styles.dadoNegrito}>{evaluation.idademeta}</Text></Text>
+                                    </View>
+
+                                </Collapsible>
+                            </View>
+                        ))}
+                    </View>
+                    {/* Add more Accordion items here if needed */}
+                </ScrollView>
             </View>
         </SafeAreaView>
     );

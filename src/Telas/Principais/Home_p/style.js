@@ -57,10 +57,12 @@ const styles = StyleSheet.create({
         marginTop:20
     },
     textButtonAvisos:{
-        padding:10,
+        padding:7,
+        paddingLeft:30,
+        paddingRight:30,
         borderRadius:5,
         backgroundColor:Global_Colors.PRIMARY_COLOR,
-        color:Global_Colors.BW_SECONDARY_COLOR,
+        color:Global_Colors.BW_QUARTIARY_COLOR,
         fontWeight:"600",
     }
 });

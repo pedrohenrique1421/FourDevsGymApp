@@ -75,7 +75,7 @@ export default function Avisos_p({ chave }) {
                         {avisos.map((aviso) => (
                             <View key={aviso.id_aviso} style={styles.containAviso}>
                                 <Text style={styles.cpTitle}>{aviso.titulo}</Text>
-                                <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>
+                                <Text style={[styles.cpSubTitle, { color:Global_Colors.TERTIARY_COLOR }]}>
                                     {aviso.descricao}
                                 </Text>
                             </View>
@@ -86,3 +86,4 @@ export default function Avisos_p({ chave }) {
         </SafeAreaView>
     );
 }
+

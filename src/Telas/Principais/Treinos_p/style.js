@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         marginTop:100,
         marginBottom:20,
         fontSize:20,
-        color:Global_Colors.PRIMARY_COLOR,
+        color:Global_Colors.BW_SECONDARY_COLOR,
         fontWeight:"900",
         marginLeft:"7%"
     },
