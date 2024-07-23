@@ -6,7 +6,6 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor:Global_Colors.BW_PRIMARY_COLOR
     },
     cpContainer: {
         width: "90%",

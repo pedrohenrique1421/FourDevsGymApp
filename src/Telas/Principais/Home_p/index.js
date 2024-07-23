@@ -82,7 +82,7 @@ export default function Home_p({ chave }) {
     }, [userId, userToken]);
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
             {showAlerta ? <Alerta type={"sucesso"} tempo={2000} onEnd={HandleOnEnd} /> : <View />}
             {/* NavBar */}
