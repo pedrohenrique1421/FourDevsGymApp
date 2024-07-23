@@ -51,7 +51,7 @@ export default function Login_p() {
         setShowDatePicker(true);
     };
 
-    const handleLogin = async () => {
+    const HandleLogin = async () => {
         setLoading(true);
         const isLoggedIn = await HandleNext(matricula, dtNasc);
         setLoading(false);

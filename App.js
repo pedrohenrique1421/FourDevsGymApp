@@ -11,10 +11,8 @@ import Produtos_p from "./src/Telas/Principais/Produtos_p";
 import Avisos_p from "./src/Telas/Principais/Avisos_p";
 import Config_p from "./src/Telas/Secundarias/Config_p";
 import Perfil_p from "./src/Telas/Secundarias/Perfil_p";
-import Suporte_p from "./src/Telas/Secundarias/Suporte_p";
 import Loading_p from "./src/Telas/Secundarias/Loading_p";
 import Sair_p from "./src/Telas/Secundarias/Sair_p";
-import Global_Colors from "./src/Scripts/GLobal/Global_Colors";
 
 const Stack = createStackNavigator();
 
@@ -53,7 +51,6 @@ export default function App() {
                 <Stack.Screen name="Config_p" component={Config_p} />
                 <Stack.Screen name="Avisos_p" component={Avisos_p} />
                 <Stack.Screen name="Perfil_p" component={Perfil_p} />
-                <Stack.Screen name="Suporte_p" component={Suporte_p} />
                 <Stack.Screen name="Loading_p" component={Loading_p} />
                 <Stack.Screen name="Sair_p" component={Sair_p} />
             </Stack.Navigator>
