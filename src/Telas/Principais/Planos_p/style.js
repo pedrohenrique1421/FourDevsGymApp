@@ -33,7 +33,13 @@ const styles = StyleSheet.create({
         borderRadius:7,
         padding:20,
         marginLeft:"10%",
-        marginTop:"5%"
+        marginTop:"3%",
+        marginBottom:"2%",
+    },
+    planoAtual: {
+        backgroundColor: Global_Colors.BW_SECONDARY_COLOR, // Cor para o plano atual
+        borderColor:Global_Colors.PRIMARY_COLOR,
+        borderWidth:1,
     },
     titlePlano:{
         width:"70%",
@@ -72,11 +78,15 @@ const styles = StyleSheet.create({
         borderRadius:5,
         marginTop:20,
         width:"100%",
+        fontWeight:"800",
         textAlign:"center",
     },
     ScrollView:{
         width:"100%",
          marginTop:"15%"
+    },
+    btn1F:{
+        backgroundColor:"red"
     }
 });
 

@@ -16,6 +16,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         gap: height / 16,
         top: "30%",
+        marginLeft:"4.3%",
+        borderWidth:1,
+        borderColor:Global_Colors.BW_QUARTIARY_COLOR
     },
     title: {
         color: Global_Colors.BW_QUARTIARY_COLOR,
@@ -23,9 +26,9 @@ const styles = StyleSheet.create({
         fontWeight: "800",
     },
     text: {
-        color: Global_Colors.BW_QUINTERNARY_COLOR,
+        color: Global_Colors.BW_QUARTIARY_COLOR,
         fontSize: 18,
-        fontWeight: "600",
+        fontWeight: "500",
         width: width / 1.25,
     },
     btnContainer: {

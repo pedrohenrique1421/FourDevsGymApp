@@ -14,7 +14,7 @@ export default function Home_p({ chave }) {
     const [showAlerta, setShowAlerta] = useState(false);
     const [userId, setUserId] = useState(null);
     const [userToken, setUserToken] = useState(null);
-    const [userName, setUserName] = useState("Loading...");
+    const [userName, setUserName] = useState("Carregando...");
     const [avisos, setAvisos] = useState([]);
     const [loading, setLoading] = useState(true);
 

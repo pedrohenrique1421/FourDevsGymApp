@@ -17,14 +17,10 @@ import Sair_p from "./src/Telas/Secundarias/Sair_p";
 const Stack = createStackNavigator();
 
 const config = {
-    animation: "spring",
+    animation: "timing",
     config: {
-        stiffness: 450,
-        damping: 500,
-        mass: 15,
-        overshootClamping: false,
-        restDisplacementThreshold: 0.01,
-        restSpeedThreshold: 0.01,
+        duration: 300, // Duração da animação em milissegundos
+        easing: Easing.ease, // Tipo de easing para suavizar a animação
     },
 };
 
