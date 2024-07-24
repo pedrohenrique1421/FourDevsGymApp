@@ -17,13 +17,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         gap: height / 16,
         top: "30%",
-<<<<<<< HEAD
         marginLeft:"4.3%",
         borderWidth:1,
         borderColor:Global_Colors.BW_QUARTIARY_COLOR
-=======
-        opacity: 0.95,
->>>>>>> e5531e23f0523625722f56371f0ed939c73e639b
     },
     title: {
         color: Global_Colors.BW_QUINTERNARY_COLOR,
@@ -31,15 +27,9 @@ const styles = StyleSheet.create({
         fontWeight: "800",
     },
     text: {
-<<<<<<< HEAD
         color: Global_Colors.BW_QUARTIARY_COLOR,
         fontSize: 18,
         fontWeight: "500",
-=======
-        color: Global_Colors.BW_QUINTERNARY_COLOR,
-        fontSize: 16,
-        fontWeight: "600",
->>>>>>> e5531e23f0523625722f56371f0ed939c73e639b
         width: width / 1.25,
     },
     btnContainer: {

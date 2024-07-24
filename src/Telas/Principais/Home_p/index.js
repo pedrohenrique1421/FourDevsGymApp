@@ -116,7 +116,7 @@ export default function Home_p({ chave }) {
                 <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Top {(avisos.length <= 3) ? avisos.length : 3} Avisos</Text>
 
                 <View style={styles.Avisos}>
-                    {avisos.slice(0, 3).map((aviso, index) => (
+                    {avisos.slice(0, 2).map((aviso, index) => (
                         <View key={index} style={styles.containAvisos}>
                             <Avisos width={20} height={20} style={styles.iconUser} />
                             <Text style={styles.cpTitleAvisos}>{aviso.titulo}</Text>
@@ -127,11 +127,13 @@ export default function Home_p({ chave }) {
                         <Avisos width={20} height={20} style={styles.iconUser} />
                         <Text style={styles.cpTitleAvisos}>Promoção no plano Trimestral !</Text>
                     </View>
-                    <TouchableOpacity onPress={() => NavegarPara("Avisos_p")}>
-                        <View style={styles.buttonMaisAvisos}>
-                            <Text style={styles.textButtonAvisos}>Todos Avisos +</Text>
-                        </View>
-                    </TouchableOpacity>
+                    {avisos.length > 3 && (
+                        <TouchableOpacity onPress={() => NavegarPara("Avisos_p")}>
+                            <View style={styles.buttonMaisAvisos}>
+                                <Text style={styles.textButtonAvisos}>Todos Avisos +</Text>
+                            </View>
+                        </TouchableOpacity>
+                    )}
                 </View>
             </View>
         </SafeAreaView>

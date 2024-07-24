@@ -38,20 +38,10 @@ export async function HandleNext(matricula, dtNasc) {
                 const token = data.conteudoJson.token;
                 const userId = data.conteudoJson.usuario.id_aluno;
                 if (token && userId) {
-                    //precisa chamar a variavel "token", estou esperando o back resolver conflito de acesso do token
-<<<<<<< HEAD
                     await AsyncStorage.setItem('userToken', token);
                     await AsyncStorage.setItem('userId', userId.toString());
                     console.log("Login realizado com sucesso", data);
                     return true;
-=======
-                    await AsyncStorage.setItem(
-                        "userToken",
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF9hZG0iOjEsImVtYWlsIjoiZG9ub0BnbWFpbC5jb20iLCJub21lIjoiV2lsa2VuaW8iLCJjYXJnbyI6ImRvbm8iLCJpZF9hY2FkZW1pYSI6MSwiZGF0YV9jcmlhY2FvIjoiMDgvMDcvMjAyNCAwMDowMDowMCIsImRhdGFfYXR1YWxpemFjYW8iOiIwOC8wNy8yMDI0IDE0OjQyOjI0Iiwibm9tZV9hY2FkZW1pYSI6IlNvYXJlcyBGSVQiLCJpYXQiOjE3MjE2ODM1NzMsImV4cCI6MTcyMjI4ODM3M30.TzcWbGXflB_fSGjPxuw6jSPxLC46i8uKEsUnd2HHDXE"
-                    );
-                    await AsyncStorage.setItem("userId", userId.toString());
-                    return "sucesso";
->>>>>>> e5531e23f0523625722f56371f0ed939c73e639b
                 } else {
                     throw new Error("Token ou ID do aluno ausentes na resposta da API");
                 }

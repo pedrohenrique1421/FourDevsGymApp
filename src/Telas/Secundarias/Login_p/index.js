@@ -55,7 +55,7 @@ export default function Login_p() {
     const HandleLogin = async () => {
         setLoading(true);
         resposta = await HandleNext(matricula, dtNasc);
-        if (resposta === "sucesso") {
+        if (resposta === true) {
             setLoading(false);
             navigation.navigate("Home_p");
         } else {
@@ -74,7 +74,7 @@ export default function Login_p() {
                     setTexto("matricula e/ou data de nascimento invalidas");
                     break;
                 default:
-                    console.log(resposta.message);
+                    //console.log(resposta.message);
                     break;
             }
         }
