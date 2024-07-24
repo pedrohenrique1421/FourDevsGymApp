@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     },
     nomeDia:{
         backgroundColor:Global_Colors.PRIMARY_COLOR,
-        color:Global_Colors.BW_PRIMARY_COLOR,
+        color:Global_Colors.BW_SECONDARY_COLOR,
         textAlign:"center",
         fontWeight:"700",
         borderTopLeftRadius:5,
@@ -59,17 +59,25 @@ const styles = StyleSheet.create({
         justifyContent:"space-between",
         borderBottomWidth:1,
         borderColor:Global_Colors.QUARTENARY_COLOR,
+        backgroundColor:Global_Colors.BW_PRIMARY_COLOR,
     },
     imageExercicio:{
         width:100,
         height:70
     },
     rep:{
-        marginRight:5
+        marginRight:5,
+        color:Global_Colors.BW_SECONDARY_COLOR,
     },
-    nomeExercicio:{},
-    series:{},
-    division:{},
+    nomeExercicio:{
+        color:Global_Colors.BW_SECONDARY_COLOR,
+    },
+    series:{
+        color:Global_Colors.BW_SECONDARY_COLOR,
+    },
+    division:{
+        color:Global_Colors.BW_SECONDARY_COLOR,
+    },
 });
 
 export default styles;

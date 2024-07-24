@@ -74,9 +74,11 @@ export default function Perfil_p({ chaves }) {
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 {studentData ? (
                     <>
-                        <Text style={styles.cpTitle}>{studentData.nome}</Text>
-                        <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Email: {studentData.email}</Text>
-                        <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Data de Início na Academia: {formatDate(studentData.data_criacao)}</Text>
+                        <View>
+                            <Text style={styles.cpTitle}>{studentData.nome}</Text>
+                            <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Email: {studentData.email}</Text>
+                            <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Data de Início na Academia: {formatDate(studentData.data_criacao)}</Text>
+                        </View>
                     </>
                 ) : (
                     <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>Carregando...</Text>

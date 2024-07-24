@@ -23,12 +23,12 @@ export default function Planos_p() {
             try {
                 const userId = await AsyncStorage.getItem('userId');
                 const tokenAdm = await AsyncStorage.getItem('userToken');
-                console.log('Fetching student details with userId:', userId, 'and tokenAdm:', tokenAdm);
+                //console.log('Fetching student details with userId:', userId, 'and tokenAdm:', tokenAdm);
                 const response = await fetch(`https://apigym-fourdevs.vercel.app/student/${userId}`, {
                     headers: { Authorization: `Bearer ${tokenAdm}` }
                 });
                 const data = await response.json();
-                console.log('Student details response:', data);
+                //console.log('Student details response:', data);
                 if (data.success) {
                     setStudentDetails(data.conteudoJson);
                 } else {
@@ -42,12 +42,12 @@ export default function Planos_p() {
         const fetchPlans = async () => {
             try {
                 const tokenAdm = await AsyncStorage.getItem('userToken');
-                console.log('Fetching plans with tokenAdm:', tokenAdm);
+                //console.log('Fetching plans with tokenAdm:', tokenAdm);
                 const response = await fetch('https://apigym-fourdevs.vercel.app/plan', {
                     headers: { Authorization: `Bearer ${tokenAdm}` }
                 });
                 const data = await response.json();
-                console.log('Plans response:', data);
+                //console.log('Plans response:', data);
                 if (data.success) {
                     setPlans(data.conteudoJson);
                 } else {
@@ -71,7 +71,7 @@ export default function Planos_p() {
         try {
             const tokenAdm = await AsyncStorage.getItem('userToken');
             const userId = await AsyncStorage.getItem('userId');
-            console.log('Creating payment for planId:', planId, 'and userId:', userId);
+            //console.log('Creating payment for planId:', planId, 'and userId:', userId);
 
             // Request to create payment
             const paymentResponse = await fetch('https://apigym-fourdevs.vercel.app/payment', {
@@ -235,15 +235,7 @@ export default function Planos_p() {
     );
 }
 
+//precisa deixar
 const popupStyles = StyleSheet.create({
-    confirmButton: {
-        backgroundColor: 'green',
-    },
-    cancelButton: {
-        backgroundColor: 'red',
-    },
-    popupText: {
-        fontSize: 16,
-        color: 'black',
-    },
+
 });

@@ -85,9 +85,6 @@ const styles = StyleSheet.create({
         width:"100%",
          marginTop:"15%"
     },
-    btn1F:{
-        backgroundColor:"red"
-    },
         // Add styles for paymentInfoContainer and paymentText
         paymentInfoContainer: {
             padding: 20,

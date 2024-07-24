@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         fontWeight:"800"
     },
     dado:{
-        color:Global_Colors.TERTIARY_COLOR,
+        color:Global_Colors.BW_SECONDARY_COLOR,
         margin:5
     }
 });

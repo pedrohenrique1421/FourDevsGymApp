@@ -18,6 +18,7 @@ export default function Treino_p() {
            navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
        };
        
+
     useEffect(() => {
         const fetchData = async () => {
             try {
