@@ -27,12 +27,12 @@ export default function Login_p() {
 
     useEffect(() => {
         const verifyToken = async () => {
+            console.log("L30");
             const tokenExists = await checkToken();
             if (tokenExists) {
                 navigation.navigate("Home_p");
             }
         };
-
         verifyToken();
     }, []);
 
@@ -59,7 +59,7 @@ export default function Login_p() {
         if (isLoggedIn) {
             navigation.navigate("Home_p");
         } else {
-            Alert.alert("Erro no login", "Matricula ou data de nascimento errados");
+            Alert.alert("Erro no login", "Matricula ou data de nascimento errados"); // Adicionar popUp
         }
     };
 
