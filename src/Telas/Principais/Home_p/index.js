@@ -3,7 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "./style";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import NavBar_c from "../../../Components/NavBar";
-import Alerta from "../../../Components/ALerta";
 import { useState, useEffect } from "react";
 import Home from "../../../../assets/Components/MenuLateral/User.svg";
 import Avisos from "../../../../assets/Components/MenuLateral/Avisos.svg";
@@ -11,17 +10,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Home_p({ chave }) {
     const navigation = useNavigation();
-    const [showAlerta, setShowAlerta] = useState(false);
     const [userId, setUserId] = useState(null);
     const [userToken, setUserToken] = useState(null);
     const [userName, setUserName] = useState("Carregando...");
     const [avisos, setAvisos] = useState([]);
     const [loading, setLoading] = useState(true);
-
-    const HandleOnEnd = () => {
-        setShowAlerta(!showAlerta);
-        console.log("alerta desfeito");
-    };
 
     // Pra navegação
     const [key, setKey] = useState(0);
@@ -53,7 +46,6 @@ export default function Home_p({ chave }) {
                         },
                     });
                     const userData = await userResponse.json();
-                    //console.log(userData);
                     if (userData.success) {
                         setUserName(userData.conteudoJson.nome);
                     } else if (userData.conteudoJson.message === "Não autorizado.") {
@@ -131,17 +123,14 @@ export default function Home_p({ chave }) {
                         </View>
                     ))}
 
-                    {avisos.length > 3 && (
-                        <TouchableOpacity onPress={() => NavegarPara("Avisos_p")}>
-                            <View style={styles.buttonMaisAvisos}>
-                                <Text style={styles.textButtonAvisos}>Todos Avisos +</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-
-                    {/* Botão para limpar informações */}
-                    <TouchableOpacity onPress={() => setShowAlerta(!showAlerta)}>
-                        <Text>Exibir alerta</Text>
+                    <View style={styles.containAvisos}>
+                        <Avisos width={20} height={20} style={styles.iconUser} />
+                        <Text style={styles.cpTitleAvisos}>Promoção no plano Trimestral !</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => NavegarPara("Avisos_p")}>
+                        <View style={styles.buttonMaisAvisos}>
+                            <Text style={styles.textButtonAvisos}>Todos Avisos +</Text>
+                        </View>
                     </TouchableOpacity>
                 </View>
             </View>
