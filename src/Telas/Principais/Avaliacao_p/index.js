@@ -97,7 +97,7 @@ const Aulas_p = () => {
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
             {/* NavBar */}
-            <NavBar_c page={"Aulas_p"} />
+            <NavBar_c page={"Avaliacao_p"} />
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 <ScrollView style={styles.ScrollView}>
                     <View style={styles.accordionTotal}>

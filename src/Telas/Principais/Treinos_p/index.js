@@ -116,7 +116,7 @@ export default function Treino_p() {
                                         source={{ uri: `${exercicio.gif_url}` }} // Ajuste a URL conforme necessário
                                         style={styles.imageExercicio}
                                     />
-                                    <Text style={styles.nomeExercicio}>Exercício {exercicio.id_exercicio}</Text>
+                                    <Text style={styles.nomeExercicio}>{exercicio.exercicio_nome}</Text>
                                     <Text style={styles.series}>{exercicio.series}</Text>
                                     <Text style={styles.division}>X</Text>
                                     <Text style={styles.rep}>{exercicio.repeticoes}</Text>
