@@ -5,8 +5,8 @@ import styles from "./style";
 import { useState, useEffect } from "react";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import PopUp from "../../../Components/PopUp";
-import Alerta from "../../../Components/Alerta";
+import PopUp from "../../../Components/PopUp/";
+import Alerta from "../../../Components/ALerta/";
 
 export default function Login_p() {
     const navigation = useNavigation();

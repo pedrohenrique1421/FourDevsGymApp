@@ -26,11 +26,7 @@ export default function PopUp({ texts, btn1F, btn2F, Alerta, btn1Style, btn2Styl
         Animated.sequence([
             Animated.timing(slideAnim, {
                 toValue: 1,
-<<<<<<< HEAD
-                duration: 500,
-=======
                 duration: 800,
->>>>>>> e5531e23f0523625722f56371f0ed939c73e639b
                 useNativeDriver: true,
             }),
         ]).start();
