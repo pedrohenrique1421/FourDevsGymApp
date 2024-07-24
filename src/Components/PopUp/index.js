@@ -9,7 +9,7 @@ export default function PopUp({ texts, btn1F, btn2F, Alerta, btn1Style, btn2Styl
             Animated.sequence([
                 Animated.timing(slideAnim, {
                     toValue: 0,
-                    duration: 800,
+                    duration: 500,
                     useNativeDriver: true,
                 }),
             ]).start(() => {
@@ -40,11 +40,11 @@ export default function PopUp({ texts, btn1F, btn2F, Alerta, btn1Style, btn2Styl
                     <Text style={styles.text}>{texts.texto}</Text>
                 </View>
                 <View style={styles.btnContainer}>
-                    <TouchableOpacity style={[styles.btn, { borderRightWidth: 0 }, btn2Style]} onPress={() => HandleExecutarFuncao(btn2F)}>
-                        <Text style={[styles.btnText, btn2TextStyle]}>{texts.btn2}</Text>
-                    </TouchableOpacity>
                     <TouchableOpacity style={[styles.btn, { borderRightWidth: 0 }]} onPress={() => HandleExecutarFuncao(btn2F)}>
-                        <Text style={styles.btnText}>{texts.btn2}</Text>
+                        <Text style={styles.btnText2}>{texts.btn2}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={[styles.btn, { borderRightWidth: 0 }, btn2Style]} onPress={() => HandleExecutarFuncao(btn2F)}>
+                        <Text style={[styles.btnText1]}>{texts.btn1}</Text>
                     </TouchableOpacity>
                 </View>
             </Animated.View>

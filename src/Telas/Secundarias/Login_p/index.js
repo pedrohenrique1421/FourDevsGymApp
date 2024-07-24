@@ -87,7 +87,7 @@ export default function Login_p() {
 
                 {alerta ? <Alerta type={"error"} tempo={2000} onEnd={() => setAlerta(false)} /> : <View />}
                 {popUp ? (
-                    <PopUp texts={{ titulo: "Error ao logar", texto: texto, btn1: "cancelar", btn2: "ok" }} btn1F={() => setPopUp(false)} btn2F={() => setPopUp(false)} />
+                    <PopUp texts={{ titulo: "⚠️ Erro ao logar", texto: texto, btn1: "Fechar", btn2: "" }} btn1F={() => setPopUp(false)} btn2F={() => setPopUp(false)} />
                 ) : (
                     <View />
                 )}
