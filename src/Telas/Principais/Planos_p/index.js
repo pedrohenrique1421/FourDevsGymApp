@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Text, SafeAreaView, View, StatusBar, ScrollView, TouchableOpacity, StyleSheet } from "react-native";
+import { Text, SafeAreaView, View, StatusBar, ScrollView, TouchableOpacity, StyleSheet, Clipboard, Image, TextInput } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./style";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import NavBar_c from "../../../Components/NavBar";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import PoupUpSet from '../../../Components/PopUp/index';
+import PoupUpSet from '../../../Components/PopUp/';
+import ALerta from '../../../Components/ALerta';
 
 export default function Planos_p() {
     const [studentDetails, setStudentDetails] = useState(null);
     const [plans, setPlans] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [selectedPlan, setSelectedPlan] = useState(null);
+    const [paymentInfo, setPaymentInfo] = useState(null); // State for payment info
+    const [pixQRCode, setPixQRCode] = useState(null); // State for PIX QR Code
+    const [refreshKey, setRefreshKey] = useState(0); // State to trigger refresh
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -19,10 +23,12 @@ export default function Planos_p() {
             try {
                 const userId = await AsyncStorage.getItem('userId');
                 const tokenAdm = await AsyncStorage.getItem('userToken');
+                console.log('Fetching student details with userId:', userId, 'and tokenAdm:', tokenAdm);
                 const response = await fetch(`https://apigym-fourdevs.vercel.app/student/${userId}`, {
                     headers: { Authorization: `Bearer ${tokenAdm}` }
                 });
                 const data = await response.json();
+                console.log('Student details response:', data);
                 if (data.success) {
                     setStudentDetails(data.conteudoJson);
                 } else {
@@ -36,10 +42,12 @@ export default function Planos_p() {
         const fetchPlans = async () => {
             try {
                 const tokenAdm = await AsyncStorage.getItem('userToken');
+                console.log('Fetching plans with tokenAdm:', tokenAdm);
                 const response = await fetch('https://apigym-fourdevs.vercel.app/plan', {
                     headers: { Authorization: `Bearer ${tokenAdm}` }
                 });
                 const data = await response.json();
+                console.log('Plans response:', data);
                 if (data.success) {
                     setPlans(data.conteudoJson);
                 } else {
@@ -52,7 +60,7 @@ export default function Planos_p() {
 
         fetchStudentDetails();
         fetchPlans();
-    }, []);
+    }, [refreshKey]);
 
     const formatDate = (dateString) => {
         const [day, month, year] = dateString.split(' ')[0].split('/'); // Extrai partes da data
@@ -62,45 +70,91 @@ export default function Planos_p() {
     const changePlan = async (planId) => {
         try {
             const tokenAdm = await AsyncStorage.getItem('userToken');
-            const { nascimento } = studentDetails;
-            const formattedDate = formatDate(nascimento); // Formata a data
+            const userId = await AsyncStorage.getItem('userId');
+            console.log('Creating payment for planId:', planId, 'and userId:', userId);
 
-            const response = await fetch(`https://apigym-fourdevs.vercel.app/student/${studentDetails.id_aluno}`, {
-                method: 'PUT',
+            // Request to create payment
+            const paymentResponse = await fetch('https://apigym-fourdevs.vercel.app/payment', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${tokenAdm}`
                 },
                 body: JSON.stringify({
-                    id_plano: planId,
-                    nascimento: formattedDate // Usa a data formatada
+                    id_aluno: userId,
+                    id_plano: planId
                 })
             });
 
-            const data = await response.json();
-            if (data.success) {
-                setStudentDetails({ ...studentDetails, id_plano: planId });
+            const paymentData = await paymentResponse.json();
+            console.log('Payment response:', paymentData);
+            if (paymentData.success) {
+                setPaymentInfo(paymentData.conteudoJson);
+                // Start checking payment status
+                checkPaymentStatus(paymentData.conteudoJson.id_pagamento);
             } else {
-                console.error('Erro ao mudar de plano:', data);
+                console.error('Erro ao criar pagamento:', paymentData);
             }
         } catch (error) {
-            console.error('Erro ao mudar de plano:', error);
+            console.error('Erro ao criar pagamento:', error);
+        }
+    };
+
+    const checkPaymentStatus = async (paymentId) => {
+        try {
+            const tokenAdm = await AsyncStorage.getItem('userToken');
+            console.log('Checking payment status for paymentId:', paymentId);
+            const intervalId = setInterval(async () => {
+                const response = await fetch(`https://apigym-fourdevs.vercel.app/payment/${paymentId}`, {
+                    headers: { Authorization: `Bearer ${tokenAdm}` }
+                });
+                const data = await response.json();
+                console.log('Payment status response:', data);
+                console.log("||"+data.conteudoJson.status)
+                if (data.success) {
+                    if (data.conteudoJson.status === 'approved') {
+                        clearInterval(intervalId);
+                        alert('Pagamento confirmado!');
+                        
+                        // Exibir o QR Code do PIX
+                        setPixQRCode(data.conteudoJson.pix_qr_code);
+                        
+                        // Clear payment info after successful update
+                        setPaymentInfo(null); // Clear payment info
+                        
+                        // Trigger a refresh
+                        setRefreshKey(prevKey => prevKey + 1);
+                    }
+                } else {
+                    console.error('Erro ao verificar status do pagamento:', data);
+                }
+            }, 7000); // Check every 7 seconds
+        } catch (error) {
+            console.error('Erro ao verificar status do pagamento:', error);
         }
     };
 
     const handleSelectPlan = (planId) => {
+        console.log('Plan selected:', planId);
         setSelectedPlan(planId);
         setShowPopup(true);
     };
 
     const confirmChangePlan = () => {
+        console.log('Confirming plan change for selected plan:', selectedPlan);
         changePlan(selectedPlan);
         setShowPopup(false);
     };
 
     const cancelChangePlan = () => {
+        console.log('Plan change canceled.');
         setSelectedPlan(null);
         setShowPopup(false);
+    };
+
+    const copyToClipboard = async (text) => {
+        await Clipboard.setString(text);
+        alert('Texto copiado para a área de transferência!');
     };
 
     if (!studentDetails || !plans || plans.length === 0) {
@@ -147,6 +201,20 @@ export default function Planos_p() {
                         </View>
                     ))}
                 </ScrollView>
+
+                {paymentInfo && (
+                      <View style={styles.containerPagamentos}>
+                    <View style={styles.pixContainer}>
+                    
+                        <TextInput placeholder="Matricula" style={styles.inputCopiaCola} value={paymentInfo.copia_cola} />
+                        <TouchableOpacity onPress={() => copyToClipboard(paymentInfo.copia_cola)}>
+                            <Text style={styles.copyText}>Copiar!</Text>
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                )}
+
+
             </View>
             {showPopup && (
                 <PoupUpSet
@@ -160,30 +228,22 @@ export default function Planos_p() {
                     btn2F={cancelChangePlan}
                     btn1Style={popupStyles.confirmButton}
                     btn2Style={popupStyles.cancelButton}
-                    btn1TextStyle={popupStyles.confirmButtonText}
-                    btn2TextStyle={popupStyles.cancelButtonText}
-                    Alerta={null}
+                    textsStyle={popupStyles.popupText}
                 />
             )}
         </SafeAreaView>
     );
-    
 }
 
 const popupStyles = StyleSheet.create({
     confirmButton: {
-        backgroundColor: Global_Colors.BW_QUARTIARY_COLOR,
-        padding: 10,
-        borderRadius: 3,
+        backgroundColor: 'green',
     },
     cancelButton: {
-        padding: 10,
-        borderRadius: 3,
+        backgroundColor: 'red',
     },
-    confirmButtonText: {
-        color: Global_Colors.PRIMARY_COLOR,
-    },
-    cancelButtonText: {
-        color: Global_Colors.BW_PRIMARY_COLOR,
+    popupText: {
+        fontSize: 16,
+        color: 'black',
     },
 });

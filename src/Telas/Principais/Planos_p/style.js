@@ -87,7 +87,50 @@ const styles = StyleSheet.create({
     },
     btn1F:{
         backgroundColor:"red"
-    }
+    },
+        // Add styles for paymentInfoContainer and paymentText
+        paymentInfoContainer: {
+            padding: 20,
+            backgroundColor: Global_Colors.BW_SECONDARY_COLOR,
+            borderRadius: 10,
+            margin: 20,
+        },
+        paymentText: {
+            fontSize: 16,
+            color: Global_Colors.BW_PRIMARY_COLOR,
+        },
+        paymentCode: {
+            fontSize: 14,
+            color: Global_Colors.BW_TERTIARY_COLOR,
+            marginVertical: 10,
+        },
+        containerPagamentos:{
+            backgroundColor:Global_Colors.BW_PRIMARY_COLOR,
+            width:"100%",
+            alignItems:"center",
+            borderTopWidth:1,
+            borderTopColor:Global_Colors.QUARTENARY_COLOR
+        },
+        pixContainer:{
+            width:"90%",
+            padding:20
+        },
+        inputCopiaCola:{
+            padding:10,
+            borderWidth:1,
+            borderColor:Global_Colors.BW_SECONDARY_COLOR,
+            width:"100%",
+            borderRadius:5
+        },
+        copyText:{
+            backgroundColor:Global_Colors.PRIMARY_COLOR,
+            color:Global_Colors.BW_PRIMARY_COLOR,
+            padding:10,
+            width:"30%",
+            textAlign:"center",
+            borderRadius:4,
+            marginTop:"2%"
+        }
 });
 
 export default styles;

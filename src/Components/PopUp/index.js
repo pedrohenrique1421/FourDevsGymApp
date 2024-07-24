@@ -43,7 +43,7 @@ export default function PopUp({ texts, btn1F, btn2F, Alerta, btn1Style, btn2Styl
                     <TouchableOpacity style={[styles.btn, { borderRightWidth: 0 }]} onPress={() => HandleExecutarFuncao(btn2F)}>
                         <Text style={styles.btnText2}>{texts.btn2}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.btn, { borderRightWidth: 0 }, btn2Style]} onPress={() => HandleExecutarFuncao(btn2F)}>
+                    <TouchableOpacity style={[styles.btn, { borderRightWidth: 0 }, btn2Style]} onPress={() => HandleExecutarFuncao(btn1F)}>
                         <Text style={[styles.btnText1]}>{texts.btn1}</Text>
                     </TouchableOpacity>
                 </View>
