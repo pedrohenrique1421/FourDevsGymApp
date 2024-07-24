@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     },
     cpSubTitle: {
         fontSize: 16,
-        fontWeight: "600",
+        fontWeight: "200",
         fontStyle: "italic",
     },
     containAviso:{

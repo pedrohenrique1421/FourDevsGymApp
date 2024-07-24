@@ -53,6 +53,9 @@ const styles = StyleSheet.create({
         color:Global_Colors.BW_QUARTIARY_COLOR,
         marginTop:7,
     },
+    clickMudarPlano:{
+        width:"100%"
+    },
     bttPlano:{
         color:Global_Colors.BW_QUARTIARY_COLOR,
         padding:10,
@@ -62,6 +65,14 @@ const styles = StyleSheet.create({
         marginTop:20,
         width:"100%",
         textAlign:"center"
+    },
+    bttPlanoAtual:{
+        color:Global_Colors.BW_QUARTIARY_COLOR,
+        padding:10,
+        borderRadius:5,
+        marginTop:20,
+        width:"100%",
+        textAlign:"center",
     },
     ScrollView:{
         width:"100%",

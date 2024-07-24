@@ -111,11 +111,11 @@ export default function Planos_p() {
                             <Text style={styles.precoPlano}>R$ {plan.valor}</Text>
                             <Text style={styles.descricaoPlano}>Plano dedicado para pessoas com foco...</Text>
                             {plan.id_plano !== studentDetails.id_plano ? (
-                                <TouchableOpacity onPress={() => changePlan(plan.id_plano)}>
+                                <TouchableOpacity style={styles.clickMudarPlano} onPress={() => changePlan(plan.id_plano)}>
                                     <Text style={styles.bttPlano}>Mudar para esse plano ✓</Text>
                                 </TouchableOpacity>
                             ) : (
-                                <Text style={styles.bttPlano}>Plano Atual ✓</Text>
+                                <Text style={styles.bttPlanoAtual}>Plano Atual ✓</Text>
                             )}
                         </View>
                     ))}
