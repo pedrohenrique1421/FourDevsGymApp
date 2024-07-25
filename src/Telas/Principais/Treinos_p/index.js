@@ -118,6 +118,7 @@ export default function Treino_p() {
                     ) : (
                         <>
                             <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
+                            <Text style={styles.descricao}>{treinoData?.treino.descricao || "Nome do Treino"}</Text>
                             {treinoData?.dias.map(dia => (
                                 <View key={dia.id_dia} style={styles.dia}>
                                     <Text style={styles.nomeDia} color={Global_Colors.BW_PRIMARY_COLOR}>Dia {dia.id_dia}</Text>

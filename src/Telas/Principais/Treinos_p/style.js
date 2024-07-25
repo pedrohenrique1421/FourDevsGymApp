@@ -39,11 +39,11 @@ const styles = StyleSheet.create({
     },
     nomeTreino: {
         marginTop: 5,
-        marginBottom: 20,
         fontSize: 18,
         color: Global_Colors.BW_SECONDARY_COLOR,
         fontWeight: "400",
-        marginLeft: "7%"
+        marginLeft: "7%",
+        fontWeight:"500"
     },
     dia: {
         width: "85%",
@@ -83,12 +83,17 @@ const styles = StyleSheet.create({
         width: "100%",
         marginTop: "24%",
         marginLeft: "7%",
-        fontWeight:"500"
+        fontWeight:"500",
+        marginBottom:"5%"
     },
     noTreinoMessage:{
         marginLeft:"7%",
         marginTop:"2%",
         fontSize:16
+    },
+    descricao:{
+        marginLeft:"7%",
+        marginBottom:"7%"
     }
 });
 
