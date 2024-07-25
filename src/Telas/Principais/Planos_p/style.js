@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         position: "absolute",
         zIndex: 10,
-        marginTop:10,
     },
     cpTitle: {
         fontSize: 24,
@@ -140,6 +139,14 @@ const styles = StyleSheet.create({
         },
         text:{
             marginBottom:"2%"
+        },
+        title:{
+            fontSize:25,
+            width:"100%",
+            marginBottom:"5%",
+            marginTop:"10%",
+            marginLeft:"10%",
+            fontWeight:"500"
         }
 });
 

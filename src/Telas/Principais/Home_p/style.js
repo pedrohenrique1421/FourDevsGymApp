@@ -65,6 +65,12 @@ const styles = StyleSheet.create({
         backgroundColor:Global_Colors.PRIMARY_COLOR,
         color:Global_Colors.BW_QUARTIARY_COLOR,
         fontWeight:"600",
+    },
+    title:{
+        fontSize:25,
+        width:"100%",
+        marginBottom:"0%",
+        fontWeight:"500"
     }
 });
 

@@ -18,7 +18,6 @@ export default function Planos_p() {
     const [refreshKey, setRefreshKey] = useState(0); // State to trigger refresh
     const [alerta, setAlerta] = useState(null); // State for alert type (null, 'copiado', 'pago')
     const navigation = useNavigation();
-
     // Fetch student details and plans
     useEffect(() => {
         const fetchStudentDetails = async () => {
@@ -187,7 +186,7 @@ export default function Planos_p() {
             <NavBar_c page={"Planos_p"} />
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 <ScrollView style={styles.ScrollView}>
-                   
+                <Text style={styles.title}>Meu Plano</Text>
                 {plans.map((plan) => {
     // Calcular os dias para vencer antes do JSX
     const diasParaVencer = studentDetails.id_plano === plan.id_plano ? calcularDiasParaVencer(studentDetails.data_inicio_plano, plan.dias_validade) : null;

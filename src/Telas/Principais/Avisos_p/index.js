@@ -73,6 +73,7 @@ export default function Avisos_p({ chave }) {
             <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 <View style={styles.avisosTotal}>
                     <ScrollView style={styles.scrollView}>
+                    <Text style={styles.title}>Avisos</Text>
                         {avisos.map((aviso) => (
                             <View key={aviso.id_aviso} style={[styles.containAviso, { shadowColor: String(`${Global_Colors.BW_SECONDARY_COLOR}50`) }]}>
                                 <View style={styles.containIconAvisos}>

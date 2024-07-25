@@ -39,10 +39,12 @@ const styles = StyleSheet.create({
         borderRadius:7,
         marginBottom:5,
     },
-    title:{
-        fontSize:20,
-        color:Global_Colors.BW_SECONDARY_COLOR,
-        marginBottom:20
+    title: {
+        fontSize: 25,
+        width: "100%",
+        marginBottom: "10%",
+        marginLeft: "10%",
+        fontWeight:"500"
     },
     titleTexto:{
         backgroundColor:Global_Colors.PRIMARY_COLOR,
@@ -73,6 +75,9 @@ const styles = StyleSheet.create({
     dado:{
         color:Global_Colors.BW_SECONDARY_COLOR,
         margin:5
+    },
+    noEvaluations:{
+        fontSize:16
     }
 });
 

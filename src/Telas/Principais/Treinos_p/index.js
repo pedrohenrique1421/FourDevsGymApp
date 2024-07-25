@@ -9,15 +9,14 @@ export default function Treino_p() {
     const [treinoData, setTreinoData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showMessage, setShowMessage] = useState(false);
 
-
-       // Pra navegação
-       const [key, setKey] = useState(0);
-       const NavegarPara = (paginaPara) => {
-           setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
-           navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
-       };
-       
+    // Pra navegação
+    const [key, setKey] = useState(0);
+    const NavegarPara = (paginaPara) => {
+        setKey((prevKey) => prevKey + 1); // Atualiza a chave para forçar remontagem
+        navigation.navigate(paginaPara, { chave: key }); // Passa a chave como parâmetro
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -46,25 +45,31 @@ export default function Treino_p() {
 
                 const studentData = await studentResponse.json();
                 const treinoID = studentData.conteudoJson.id_treino;
+                //console.log(studentData.conteudoJson.id_treino)
 
-                // Requisição para a segunda API usando id_aluno
-                const treinoResponse = await fetch(`https://apigym-fourdevs.vercel.app/training/${treinoID}`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json'
+                if (!studentData.conteudoJson.id_treino) {
+                    // Atualiza o estado para mostrar a mensagem
+                    setShowMessage(true);
+                } else {
+                    // Requisição para a segunda API usando id_aluno
+                    const treinoResponse = await fetch(`https://apigym-fourdevs.vercel.app/training/${treinoID}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (!treinoResponse.ok) {
+                        throw new Error('Erro ao obter dados do treino.');
                     }
-                });
-             
-                if (!treinoResponse.ok) {
-                    throw new Error('Erro ao obter dados do treino.');
-                }
-             
-                const treinoData = await treinoResponse.json();
-                setTreinoData(treinoData.conteudoJson);
-                console.log(treinoData)
-                if (treinoData.conteudoJson.message === "Não autorizado.") {
-                    NavegarPara("Sair_p")
+
+                    const treinoData = await treinoResponse.json();
+                    setTreinoData(treinoData.conteudoJson);
+
+                    if (treinoData.conteudoJson.message === "Não autorizado.") {
+                        NavegarPara("Sair_p")
+                    }
                 }
             } catch (error) {
                 setError(error.message);
@@ -107,24 +112,31 @@ export default function Treino_p() {
             <NavBar_c page={"Treinos_p"} />
             <View style={styles.cpContainer}>
                 <ScrollView width={"100%"}>
-                    <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
-                    {treinoData?.dias.map(dia => (
-                        <View key={dia.id_dia} style={styles.dia}>
-                            <Text style={styles.nomeDia}     color={Global_Colors.BW_PRIMARY_COLOR}>Dia {dia.id_dia}</Text>
-                            {dia.exercicios.map(exercicio => (
-                                <View key={exercicio.id_exercicio} style={styles.exercicio} backgroundColor={Global_Colors.BW_PRIMARY_COLOR}>
-                                    <Image
-                                        source={{ uri: `${exercicio.gif_url}` }} // Ajuste a URL conforme necessário
-                                        style={styles.imageExercicio}
-                                    />
-                                    <Text style={styles.nomeExercicio}>{exercicio.exercicio_nome}</Text>
-                                    <Text style={styles.series}>{exercicio.series}</Text>
-                                    <Text style={styles.division}>X</Text>
-                                    <Text style={styles.rep}>{exercicio.repeticoes}</Text>
+                    <Text style={styles.title}>Ficha de Treino</Text>
+                    {showMessage ? (
+                      <Text style={styles.noTreinoMessage}>Nenhum treino encontrado! 😪</Text>
+                    ) : (
+                        <>
+                            <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
+                            {treinoData?.dias.map(dia => (
+                                <View key={dia.id_dia} style={styles.dia}>
+                                    <Text style={styles.nomeDia} color={Global_Colors.BW_PRIMARY_COLOR}>Dia {dia.id_dia}</Text>
+                                    {dia.exercicios.map(exercicio => (
+                                        <View key={exercicio.id_exercicio} style={styles.exercicio} backgroundColor={Global_Colors.BW_PRIMARY_COLOR}>
+                                            <Image
+                                                source={{ uri: `${exercicio.gif_url}` }} // Ajuste a URL conforme necessário
+                                                style={styles.imageExercicio}
+                                            />
+                                            <Text style={styles.nomeExercicio}>{exercicio.exercicio_nome}</Text>
+                                            <Text style={styles.series}>{exercicio.series}</Text>
+                                            <Text style={styles.division}>X</Text>
+                                            <Text style={styles.rep}>{exercicio.repeticoes}</Text>
+                                        </View>
+                                    ))}
                                 </View>
                             ))}
-                        </View>
-                    ))}
+                        </>
+                    )}
                 </ScrollView>
             </View>
         </SafeAreaView>

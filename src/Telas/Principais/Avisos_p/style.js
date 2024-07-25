@@ -56,6 +56,14 @@ const styles = StyleSheet.create({
         marginLeft: "5%",
         width: "80%",
     },
+    title:{
+        fontSize:25,
+        width:"100%",
+        marginBottom:"2%",
+        marginTop:"3%",
+        marginLeft:"6%",
+        fontWeight:"500"
+    }
 });
 
 export default styles;

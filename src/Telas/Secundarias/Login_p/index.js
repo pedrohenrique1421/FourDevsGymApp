@@ -7,7 +7,7 @@ import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import PopUp from "../../../Components/PopUp/";
 import Alerta from "../../../Components/ALerta/";
-
+import Logo from "../../../../assets/Components/NavBar_sb/Logo.svg";
 export default function Login_p() {
     const navigation = useNavigation();
     const [matricula, setMatricula] = useState("");
@@ -81,6 +81,7 @@ export default function Login_p() {
     };
 
     return (
+
         <ScrollView style={styles.scrollContainer} onLayout={onLayout}>
             <ImageBackground source={require("../../../../assets/Telas/Secundarias/Login/Backgrounds/Bg_Login.png")} style={[styles.container, { height: height }]}>
                 <StatusBar backgroundColor={Global_Colors.PRIMARY_COLOR} barStyle={"light-content"} />
@@ -92,7 +93,10 @@ export default function Login_p() {
                     <View />
                 )}
                 <View style={styles.lgContainer}>
-                    <Image source={require("../../../../assets/Telas/Secundarias/Login/CrownSimbol.png")} />
+                    {/* <Image source={require("../../../../assets/Telas/Secundarias/Login/CrownSimbol.png")} /> */}
+                    <View style={styles.containerLogo}>
+                <Logo style={styles.logo} width={65} height={65} />
+                </View>
                     <Text style={styles.lgContainerText}>FourDevsGym</Text>
                 </View>
 

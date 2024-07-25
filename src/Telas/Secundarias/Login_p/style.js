@@ -103,6 +103,15 @@ const styles = StyleSheet.create({
     text:{
         justifyContent:"start",
         alignItems:"start"
+    },
+    logo:{
+        borderRadius:100
+    },
+    containerLogo:{
+        backgroundColor:Global_Colors.PRIMARY_COLOR,
+        padding:15,
+        borderRadius:500,
+
     }
 });
 
