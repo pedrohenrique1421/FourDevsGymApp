@@ -22,7 +22,7 @@ export default function Avisos_p({ chave }) {
     useEffect(() => {
         const fetchAvisos = async () => {
             try {
-                const userToken = await AsyncStorage.getItem('userToken');
+                const userToken = await AsyncStorage.getItem("userToken");
                 if (!userToken) {
                     console.error("Token não encontrado");
                     setLoading(false);
@@ -31,8 +31,8 @@ export default function Avisos_p({ chave }) {
 
                 const response = await fetch("https://apigym-fourdevs.vercel.app/notice", {
                     headers: {
-                        'Authorization': `Bearer ${userToken}`,
-                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${userToken}`,
+                        "Content-Type": "application/json",
                     },
                 });
 
@@ -40,7 +40,7 @@ export default function Avisos_p({ chave }) {
                 if (data.success) {
                     setAvisos(data.conteudoJson);
                 } else if (data.conteudoJson.message === "Não autorizado.") {
-                    NavegarPara("Sair_p")
+                    NavegarPara("Sair_p");
                 }
             } catch (error) {
                 console.error("Erro ao buscar avisos:", error);
@@ -56,7 +56,7 @@ export default function Avisos_p({ chave }) {
         return (
             <SafeAreaView style={[styles.container, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR }]}>
                 <StatusBar barStyle={"light-content"} backgroundColor={Global_Colors.PRIMARY_COLOR} />
-                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR, justifyContent: 'center', alignItems: 'center', height: '100%' }]}>
+                <View style={[styles.cpContainer, { backgroundColor: Global_Colors.BW_PRIMARY_COLOR, justifyContent: "center", alignItems: "center", height: "100%" }]}>
                     <ActivityIndicator size="large" color={Global_Colors.PRIMARY_COLOR} />
                     <Text style={styles.loading}>Carregando...</Text>
                 </View>
@@ -74,16 +74,14 @@ export default function Avisos_p({ chave }) {
                 <View style={styles.avisosTotal}>
                     <ScrollView style={styles.scrollView}>
                         {avisos.map((aviso) => (
-                            <View key={aviso.id_aviso} style={styles.containAviso}>
+                            <View key={aviso.id_aviso} style={[styles.containAviso, { shadowColor: String(`${Global_Colors.BW_SECONDARY_COLOR}50`) }]}>
                                 <View style={styles.containIconAvisos}>
                                     <Avisos style={styles.avisosIcon}></Avisos>
                                 </View>
 
                                 <View style={styles.textAviso}>
                                     <Text style={styles.cpTitle}>{aviso.titulo}</Text>
-                                    <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_QUINTERNARY_COLOR }]}>
-                                        {aviso.descricao}
-                                    </Text>
+                                    <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>{aviso.descricao}</Text>
                                 </View>
                             </View>
                         ))}
@@ -93,4 +91,3 @@ export default function Avisos_p({ chave }) {
         </SafeAreaView>
     );
 }
-
