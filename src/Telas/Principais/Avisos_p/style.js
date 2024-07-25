@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "500",
         fontStyle: "italic",
+        color:Global_Colors.QUINTERNARY_COLOR
     },
     containAviso: {
         marginTop: 15,

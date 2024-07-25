@@ -15,23 +15,23 @@ export default function Alerta({ tempo, type, funcaoDeRetorno, onEnd }) {
         Animated.sequence([
             Animated.timing(slideAnim, {
                 toValue: width / 2.5,
-                duration: 1000,
+                duration: 500,
                 useNativeDriver: true,
             }),
             Animated.timing(slideAnim, {
                 toValue: 0,
-                duration: 1000, //
+                duration: 500, //
                 useNativeDriver: true,
             }),
             Animated.timing(slideAnim, {
                 toValue: 0,
-                duration: 1000,
+                duration: 500,
                 useNativeDriver: true,
                 delay: tempo,
             }),
             Animated.timing(slideAnim, {
                 toValue: width / 2.5,
-                duration: 1000, //
+                duration: 500, //
                 useNativeDriver: true,
             }),
         ]).start(HandleFuncaoEnd);
@@ -52,7 +52,7 @@ export default function Alerta({ tempo, type, funcaoDeRetorno, onEnd }) {
         <Animated.View
             style={[
                 styles.container,
-                { backgroundColor: type == "sucesso" ? "#28a745" : type == "alerta" ? "#ffc107" : "#dc3545" },
+                { borderLeftColor: type == "sucesso" ? "#28a745" :type == "copiado" ? "#28a745" :type == "pago" ? "#28a745" : type == "alerta" ? "#ffc107" : "#dc3545" },
                 { transform: [{ translateX: slideAnim }] },
             ]}
         >
@@ -63,14 +63,14 @@ export default function Alerta({ tempo, type, funcaoDeRetorno, onEnd }) {
                         {
                             color:
                                 type == "sucesso"
-                                    ? Global_Colors.BW_QUARTIARY_COLOR
+                                    ? Global_Colors.BW_SECONDARY_COLOR
                                     : type == "alerta"
-                                    ? Global_Colors.BW_QUINTERNARY_COLOR
-                                    : Global_Colors.BW_QUARTIARY_COLOR,
+                                    ? Global_Colors.BW_SECONDARY_COLOR
+                                    : Global_Colors.BW_SECONDARY_COLOR,
                         },
                     ]}
                 >
-                    {type == "sucesso" ? "Sucesso" : type == "alerta" ? "Cuidado" : "Error"}
+                    {type == "sucesso" ? "Sucesso" :type == "copiado" ? "Copiado!" :type == "pago" ? "Pago!" : type == "alerta" ? "Cuidado" : "Erro"}
                 </Text>
             </TouchableOpacity>
         </Animated.View>

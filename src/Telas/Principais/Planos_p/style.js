@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         position: "absolute",
         zIndex: 10,
+        marginTop:10,
     },
     cpTitle: {
         fontSize: 24,
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
         padding:20,
         marginLeft:"10%",
         marginTop:"3%",
-        marginBottom:"2%",
+        marginBottom:"4%",
     },
     planoAtual: {
         backgroundColor: Global_Colors.BW_SECONDARY_COLOR, // Cor para o plano atual
@@ -73,12 +74,13 @@ const styles = StyleSheet.create({
         textAlign:"center"
     },
     bttPlanoAtual:{
-        color:Global_Colors.BW_QUARTIARY_COLOR,
+        color:Global_Colors.BW_SECONDARY_COLOR,
+        backgroundColor:Global_Colors.BW_PRIMARY_COLOR,
         padding:10,
         borderRadius:5,
         marginTop:20,
         width:"100%",
-        fontWeight:"800",
+        fontWeight:"600",
         textAlign:"center",
     },
     ScrollView:{
@@ -127,6 +129,17 @@ const styles = StyleSheet.create({
             textAlign:"center",
             borderRadius:4,
             marginTop:"2%"
+        },
+        vencimento:{
+            color:Global_Colors.BW_PRIMARY_COLOR,
+            paddingTop:5,
+            borderRadius:1,
+            textAlign:"center",
+            width:"100%",
+            fontSize:12,
+        },
+        text:{
+            marginBottom:"2%"
         }
 });
 

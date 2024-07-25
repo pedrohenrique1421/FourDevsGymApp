@@ -14,11 +14,14 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 6,
+        borderLeftWidth:3,
+        backgroundColor:Global_Colors.BW_PRIMARY_COLOR,
     },
     text: {
         textAlign: "center",
         fontSize: 18,
-        fontWeight: "700",
+        fontWeight: "500",
+        color:Global_Colors.BW_SECONDARY_COLOR
     },
     btn: {
         width: "100%",

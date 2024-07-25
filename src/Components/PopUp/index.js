@@ -9,7 +9,7 @@ export default function PopUp({ texts, btn1F, btn2F, Alerta, btn1Style, btn2Styl
             Animated.sequence([
                 Animated.timing(slideAnim, {
                     toValue: 0,
-                    duration: 500,
+                    duration: 10,
                     useNativeDriver: true,
                 }),
             ]).start(() => {
@@ -22,7 +22,7 @@ export default function PopUp({ texts, btn1F, btn2F, Alerta, btn1Style, btn2Styl
         Animated.sequence([
             Animated.timing(slideAnim, {
                 toValue: 1,
-                duration: 800,
+                duration: 10,
                 useNativeDriver: true,
             }),
         ]).start();

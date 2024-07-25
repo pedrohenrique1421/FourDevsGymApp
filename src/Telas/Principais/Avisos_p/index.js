@@ -81,7 +81,7 @@ export default function Avisos_p({ chave }) {
 
                                 <View style={styles.textAviso}>
                                     <Text style={styles.cpTitle}>{aviso.titulo}</Text>
-                                    <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_SECONDARY_COLOR }]}>{aviso.descricao}</Text>
+                                    <Text style={[styles.cpSubTitle, { color: Global_Colors.BW_PRIMARY_COLOR }]}>{aviso.descricao}</Text>
                                 </View>
                             </View>
                         ))}

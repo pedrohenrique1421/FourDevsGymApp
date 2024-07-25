@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import PopUp from "../../../Components/PopUp/";
-import Alerta from "../../../Components/Alerta/";
+import Alerta from "../../../Components/ALerta/";
 
 export default function Login_p() {
     const navigation = useNavigation();
@@ -19,7 +19,7 @@ export default function Login_p() {
     // Variaveis de alerta e PopUp
     const [alerta, setAlerta] = useState(false);
     const [popUp, setPopUp] = useState(false);
-    const [texto, setTexto] = useState({});
+    const [texto, setTexto] = useState("");
     let resposta = "";
 
     //#region
@@ -71,7 +71,7 @@ export default function Login_p() {
                     break;
                 case "matricula e/ou data de nascimento invalidas":
                     setPopUp(true);
-                    setTexto("matricula e/ou data de nascimento invalidas");
+                    setTexto("Matricula e/ou data de nascimento inválidas!");
                     break;
                 default:
                     //console.log(resposta.message);
@@ -85,9 +85,9 @@ export default function Login_p() {
             <ImageBackground source={require("../../../../assets/Telas/Secundarias/Login/Backgrounds/Bg_Login.png")} style={[styles.container, { height: height }]}>
                 <StatusBar backgroundColor={Global_Colors.PRIMARY_COLOR} barStyle={"light-content"} />
 
-                {alerta ? <Alerta type={"error"} tempo={2000} onEnd={() => setAlerta(false)} /> : <View />}
+                {alerta ? <Alerta type={"Error"} tempo={2000} onEnd={() => setAlerta(false)} /> : <View />}
                 {popUp ? (
-                    <PopUp texts={{ titulo: "⚠️ Erro ao logar", texto: texto, btn1: "Fechar", btn2: "" }} btn1F={() => setPopUp(false)} btn2F={() => setPopUp(false)} />
+                    <PopUp texts={{ titulo: "Erro ao logar", texto: texto, btn1: " Fechar", btn2: "" }} btn1F={() => setPopUp(false)} btn2F={() => setPopUp(false)} />
                 ) : (
                     <View />
                 )}

@@ -110,9 +110,9 @@ export default function Treino_p() {
                     <Text style={styles.nomeTreino}>{treinoData?.treino.nome || "Nome do Treino"}</Text>
                     {treinoData?.dias.map(dia => (
                         <View key={dia.id_dia} style={styles.dia}>
-                            <Text style={styles.nomeDia}>Dia {dia.id_dia}</Text>
+                            <Text style={styles.nomeDia}     color={Global_Colors.BW_PRIMARY_COLOR}>Dia {dia.id_dia}</Text>
                             {dia.exercicios.map(exercicio => (
-                                <View key={exercicio.id_exercicio} style={styles.exercicio}>
+                                <View key={exercicio.id_exercicio} style={styles.exercicio} backgroundColor={Global_Colors.BW_PRIMARY_COLOR}>
                                     <Image
                                         source={{ uri: `${exercicio.gif_url}` }} // Ajuste a URL conforme necessário
                                         style={styles.imageExercicio}

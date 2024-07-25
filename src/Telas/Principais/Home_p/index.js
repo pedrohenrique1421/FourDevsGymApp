@@ -49,7 +49,7 @@ export default function Home_p({ chave }) {
                     if (userData.success) {
                         setUserName(userData.conteudoJson.nome);
                     } else if (userData.conteudoJson.message === "Não autorizado.") {
-                        console.log("nao");
+                        NavegarPara("Sair_p");
                     }
                 }
 
