@@ -5,7 +5,7 @@ import styles from "./style";
 import Global_Colors from "../../../Scripts/GLobal/Global_Colors";
 import NavBar_c from "../../../Components/NavBar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import PoupUpSet from "../../../Components/PopUp/";
+import PopUp from "../../../Components/PopUp/";
 
 export default function Planos_p() {
     const [studentDetails, setStudentDetails] = useState(null);
@@ -17,6 +17,7 @@ export default function Planos_p() {
     const [refreshKey, setRefreshKey] = useState(0); // State to trigger refresh
     const navigation = useNavigation();
 
+    // Puxar algo
     useEffect(() => {
         const fetchStudentDetails = async () => {
             try {
@@ -204,7 +205,7 @@ export default function Planos_p() {
                 )}
             </View>
             {showPopup && (
-                <PoupUpSet
+                <PopUp
                     texts={{
                         titulo: "Mudança de Plano",
                         texto: "Você realmente deseja mudar para este plano?",
