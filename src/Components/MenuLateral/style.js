@@ -41,11 +41,12 @@ const styles = StyleSheet.create({
         paddingRight: "6%",
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-around",
+        paddingLeft:15
     },
     BDPText: {
         fontSize: 20,
         color: Global_Colors.BW_PRIMARY_COLOR,
+        marginLeft:"12%"
     },
     BDPImage: {
         height: 32,

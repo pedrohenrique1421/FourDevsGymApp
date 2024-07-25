@@ -178,9 +178,9 @@ export default function Menulateral_c({ page, resetSlide }) {
                 </TouchableOpacity>
 
                 {/* Elemento de desenvolvimento */}
-                <TouchableOpacity style={styles.BDPImageContainer} onPress={() => resetAndNavigate()}>
+                {/* <TouchableOpacity style={styles.BDPImageContainer} onPress={() => resetAndNavigate()}>
                     <Dark_Mode width={widthSvg * 0.8} height={heightSvg * 0.8} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </View>
     );
