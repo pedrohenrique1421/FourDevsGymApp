@@ -57,8 +57,9 @@ const Aulas_p = () => {
         const getEvaluations = async () => {
             if (userToken) {
                 const data = await fetchEvaluations(userToken);
+               
                 if (userId) {
-                    const userEvaluations = data.conteudoJson.filter(e => e.id_aluno.toString() === userId);
+                    const userEvaluations = data.conteudoJson.filter(e => e.id_aluno == userId);
                     setEvaluations(userEvaluations);
                 }
             }
