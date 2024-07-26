@@ -47,7 +47,7 @@ FourDevsGymAPP/
 ├── app.json
 ├── babel.config.js
 ├── package.json
-├── metro.config.json
+├── metro.config.js
 └── README.md
 
 
