@@ -49,10 +49,6 @@ FourDevsGymAPP/
 ├── package.json
 ├── metro.config.js
 └── README.md
-
-
-
-
 </code>
 </pre>
 
